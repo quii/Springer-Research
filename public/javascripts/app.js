@@ -71,11 +71,12 @@
     };
 
     SpringerLite.prototype.getTaggedDocuments = function() {
-      var areaName,
+      var areaName, url,
         _this = this;
-      areaName = "coffeescript";
+      areaName = $("#area-id").text();
+      url = "/tag/" + areaName;
       return $.ajax({
-        url: '/tag/coffeescript',
+        url: url,
         dataType: 'json',
         type: 'GET',
         success: function(json) {

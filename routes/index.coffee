@@ -13,6 +13,5 @@ exports.postTag = (req, res) ->
 
 exports.researchGetTags = (req, res) ->
 	tagProvider.getByTag(req.params.area, (doc) ->
-		console.log("recieved", doc)
 		res.send(doc)
 	)

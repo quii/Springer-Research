@@ -26,7 +26,7 @@ class root.TagProvider
 				console.log("failed to get by tag")
 			else
 				# tagCollection.find( {area: name}, (error, articles) ->
-				tagCollection.find({}).toArray((error, articles) ->
+				tagCollection.find({area: name}).toArray((error, articles) ->
 					if(error? || !articles?)
 						console.log("error finding documents matching #{name}")
 					else

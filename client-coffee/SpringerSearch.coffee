@@ -18,9 +18,10 @@ class SpringerLite
 			@getResult(@term)
 
 	getTaggedDocuments: ->
-		areaName = "coffeescript"
+		areaName = $("#area-id").text()
+		url = "/tag/#{areaName}"
 		$.ajax
-			url: '/tag/coffeescript'
+			url: url
 			dataType: 'json'
 			type: 'GET'
 			success: (json) =>
