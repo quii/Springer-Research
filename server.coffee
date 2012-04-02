@@ -1,6 +1,5 @@
 express = require('express')
 routes = require('./routes')
-tagProvider = require('./server-coffee/tag-provider-mongo').TagProvider;
 
 app = module.exports = express.createServer()
 

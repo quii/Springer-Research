@@ -1,4 +1,6 @@
-class TagProvider
+root = exports ? this
+
+class root.TagProvider
 
 	Db = require('mongodb').Db;
 	Connection = require('mongodb').Connection;
@@ -6,18 +8,28 @@ class TagProvider
 	BSON = require('mongodb').BSON;
 	ObjectID = require('mongodb').ObjectID;
 
-	getTags = ->
-		db.collection('tags', (error, tagCollection) ->
-			if(error?) callback(error)
-			else callback(null, tagCollection)
+	getTags: (callback) ->
+		@db.collection('tags', (error, tagCollection) ->
+			if(error?) 
+				callback(error)
+			else 
+				callback(null, tagCollection)
 		)
 
 	constructor: (host, port) ->
-		Db = new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}))
-		db.open(->);
+		@db = new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}))
+		@db.open(->);
 
 	getByTag: (name) ->
 		console.log("going to retrieve #{name}")
 
 	insert: (tagJson) ->
-		console.log("going to insert #{tagJson}")
+		@getTags( (error, tagCollection) ->
+			if(error?) 
+				console.log("error")
+			else
+				tagCollection.insert(tagJson, ->
+					# callback(null, tagJson)
+					console.log("inserted", tagJson)
+				)
+		)
