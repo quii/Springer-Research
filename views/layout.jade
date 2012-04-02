@@ -1,0 +1,37 @@
+!!! 5
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title SpringerLite
+    link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
+  body
+    header
+      h1
+        | Springer
+        span.light Lite
+    section#search-section
+      form#search-form
+        label(for='search', placeholder='type search here') Search
+        input#search(type='text', name='search')
+        input#search-button(type='submit', value='Search', autocomplete='off')
+    section
+      #results
+      #template(style='display: none;')
+        ol
+          | {{#records}}
+          li
+            a(href='{{url}}') {{title}}
+          | {{/records}}
+      #load-more.loading Load more
+    section!= body
+    footer
+      | Created by
+      a(href='http://twitter.com/quii') Chris James
+      | -
+      a#empty-cache(href='#')
+        | Empty saved searches
+        a
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', type='text/javascript', charset='utf-8')
+    script(src='http://github.com/janl/mustache.js/raw/master/mustache.js')
+    script(src='http://code.jquery.com/ui/1.8.18/jquery-ui.min.js', type='text/javascript')
+    script(src='javascripts/app.js', type='text/javascript', charset='utf-8')

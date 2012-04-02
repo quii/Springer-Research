@@ -1,0 +1,37 @@
+fs         = require 'fs'
+{exec}     = require 'child_process'
+
+appFiles  = [
+  'client-coffee/SpringerSearch.coffee'
+]
+
+task 'watch', 'Watch prod source files and build changes', ->
+    invoke 'build'
+    console.log "Watching for changes in coffeescript"
+
+    for file in appFiles then do (file) ->
+        fs.watchFile file, (curr, prev) ->
+            if +curr.mtime isnt +prev.mtime
+                console.log "Saw change in #{file}"
+                invoke 'build'
+
+task 'build', 'Build single application file from source files', ->
+  appContents = new Array 
+  remaining = appFiles.length
+  console.log("appfiles length -", remaining)
+  for file, index in appFiles then do (file, index) ->
+    fs.readFile file, 'utf8', (err, fileContents) ->
+      throw err if err
+      appContents[index] = fileContents
+      process() if --remaining is 0
+  process = ->
+    fs.writeFile 'public/javascripts/app.coffee', appContents.join('\n\n'), 'utf8', (err) ->
+      throw err if err
+      exec 'coffee --compile public/javascripts/app.coffee', (err, stdout, stderr) ->
+        if err
+          console.log 'Error compiling coffee file.'
+        else
+          fs.unlink 'public/javascripts/app.coffee', (err) ->
+            if err
+              console.log 'Couldn\'t delete the app.coffee file/'
+            console.log 'Done building coffee file.'
