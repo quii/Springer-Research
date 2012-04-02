@@ -41,8 +41,5 @@ class root.TagProvider
 			if(error?) 
 				console.log("error")
 			else
-				tagCollection.insert(tagJson, ->
-					# callback(null, tagJson)
-					console.log("inserted", tagJson)
-				)
+				tagCollection.insert(tagJson)
 		)

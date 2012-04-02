@@ -1,5 +1,5 @@
 (function() {
-  var SearchResultCache, SpringerLite;
+  var SearchResultCache, SpringerLite, Tagger, tagger;
 
   SearchResultCache = (function() {
 
@@ -33,20 +33,56 @@
 
   })();
 
-  $(".tag").live("click", function() {
-    var tagData;
-    tagData = {
-      doi: $(this).attr('doi'),
-      title: $(this).attr('title'),
-      area: $(this).attr('area')
+  Tagger = (function() {
+    var renderTaggedDocuments;
+
+    function Tagger() {
+      this.registerTagButtons();
+      this.getTaggedDocuments();
+    }
+
+    Tagger.prototype.registerTagButtons = function() {
+      return $(".tag").live("click", function() {
+        var tagData;
+        tagData = {
+          doi: $(this).attr('doi'),
+          title: $(this).attr('title'),
+          area: $(this).attr('area')
+        };
+        $.ajax({
+          type: 'POST',
+          data: tagData,
+          url: '/tag'
+        });
+        return false;
+      });
     };
-    $.ajax({
-      type: 'POST',
-      data: tagData,
-      url: '/tag'
-    });
-    return false;
-  });
+
+    Tagger.prototype.getTaggedDocuments = function() {
+      var areaName, url;
+      areaName = $("#area-id").text();
+      url = "/tag/" + areaName;
+      return $.ajax({
+        url: url,
+        dataType: 'json',
+        type: 'GET',
+        success: function(json) {
+          return renderTaggedDocuments(json);
+        }
+      });
+    };
+
+    renderTaggedDocuments = function(json) {
+      var renderedHTML;
+      renderedHTML = Mustache.to_html($('#tagged-template').html(), json);
+      return $('#tagged-container').html(renderedHTML);
+    };
+
+    return Tagger;
+
+  })();
+
+  tagger = new Tagger();
 
   SpringerLite = (function() {
     var loadMoreButton, resultsContainer, searchBox, searchButtonElement, stitchResults;
@@ -57,7 +93,6 @@
       this.handleLoadMore();
       this.handleEmpty();
       this.handleAutoComplete();
-      this.getTaggedDocuments();
     }
 
     SpringerLite.prototype.doSearch = function(page) {
@@ -68,22 +103,6 @@
       } else {
         return this.getResult(this.term);
       }
-    };
-
-    SpringerLite.prototype.getTaggedDocuments = function() {
-      var areaName, url,
-        _this = this;
-      areaName = $("#area-id").text();
-      url = "/tag/" + areaName;
-      return $.ajax({
-        url: url,
-        dataType: 'json',
-        type: 'GET',
-        success: function(json) {
-          console.log("whoop");
-          return console.log(json);
-        }
-      });
     };
 
     SpringerLite.prototype.getResult = function(term, page) {

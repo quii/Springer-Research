@@ -6,7 +6,6 @@ class SpringerLite
 		@handleLoadMore()
 		@handleEmpty()
 		@handleAutoComplete()
-		@getTaggedDocuments()
 
 	doSearch: (page) ->
 		searchButtonElement.attr("value", "Searching")
@@ -16,17 +15,6 @@ class SpringerLite
 			@renderResult(@term)
 		else
 			@getResult(@term)
-
-	getTaggedDocuments: ->
-		areaName = $("#area-id").text()
-		url = "/tag/#{areaName}"
-		$.ajax
-			url: url
-			dataType: 'json'
-			type: 'GET'
-			success: (json) =>
-				console.log "whoop"
-				console.log json
 
 	getResult: (term, page=1) ->
 		page = parseInt(page)
