@@ -49,6 +49,7 @@
           title: $(this).attr('title'),
           area: $(this).attr('area')
         };
+        $("#tagged-container ol").append("<li><a href='" + tagData.url + "'>" + tagData.title + "</li>");
         $.ajax({
           type: 'POST',
           data: tagData,

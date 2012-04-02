@@ -1,0 +1,8 @@
+#tagged-container
+#tagged-template(style='display: none;')
+  h2 Documents tagged by users
+  ol
+    | {{#results}}
+    li
+      a(href='http://rd.springer.com/{{doi}}') {{title}}
+    | {{/results}}
