@@ -20,5 +20,6 @@ app.configure('production', ->
 )
 
 app.get('/', routes.index)
+app.get('/research/:area', routes.research)
 
 app.listen(3000)
