@@ -10,3 +10,9 @@ exports.research = (req, res) ->
 exports.postTag = (req, res) ->
 	tagProvider.insert(req.body)
 	"done"
+
+exports.researchGetTags = (req, res) ->
+	tagProvider.getByTag(req.params.area, (doc) ->
+		console.log("recieved", doc)
+		res.send(doc)
+	)

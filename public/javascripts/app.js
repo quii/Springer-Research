@@ -57,6 +57,7 @@
       this.handleLoadMore();
       this.handleEmpty();
       this.handleAutoComplete();
+      this.getTaggedDocuments();
     }
 
     SpringerLite.prototype.doSearch = function(page) {
@@ -67,6 +68,21 @@
       } else {
         return this.getResult(this.term);
       }
+    };
+
+    SpringerLite.prototype.getTaggedDocuments = function() {
+      var areaName,
+        _this = this;
+      areaName = "coffeescript";
+      return $.ajax({
+        url: '/tag/coffeescript',
+        dataType: 'json',
+        type: 'GET',
+        success: function(json) {
+          console.log("whoop");
+          return console.log(json);
+        }
+      });
     };
 
     SpringerLite.prototype.getResult = function(term, page) {

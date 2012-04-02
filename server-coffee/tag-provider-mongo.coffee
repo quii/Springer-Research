@@ -20,8 +20,16 @@ class root.TagProvider
 		@db = new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}))
 		@db.open(->);
 
-	getByTag: (name) ->
-		console.log("going to retrieve #{name}")
+	getByTag: (name, callback) ->
+		@getTags( (error, tagCollection) ->
+			if(error?)
+				console.log("failed to get by tag")
+			else
+				tagCollection.findOne(
+					{area: name}, (error, doc) ->
+						callback(doc)
+				)
+		)
 
 	insert: (tagJson) ->
 		@getTags( (error, tagCollection) ->

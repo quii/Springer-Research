@@ -22,5 +22,6 @@ app.configure('production', ->
 app.get('/', routes.index)
 app.get('/research/:area', routes.research)
 app.post('/tag', routes.postTag)
+app.get('/tag/:area', routes.researchGetTags)
 
 app.listen(3000)

@@ -6,6 +6,7 @@ class SpringerLite
 		@handleLoadMore()
 		@handleEmpty()
 		@handleAutoComplete()
+		@getTaggedDocuments()
 
 	doSearch: (page) ->
 		searchButtonElement.attr("value", "Searching")
@@ -15,6 +16,16 @@ class SpringerLite
 			@renderResult(@term)
 		else
 			@getResult(@term)
+
+	getTaggedDocuments: ->
+		areaName = "coffeescript"
+		$.ajax
+			url: '/tag/coffeescript'
+			dataType: 'json'
+			type: 'GET'
+			success: (json) =>
+				console.log "whoop"
+				console.log json
 
 	getResult: (term, page=1) ->
 		page = parseInt(page)
