@@ -2,6 +2,8 @@ express = require('express')
 routes = require('./routes')
 
 app = module.exports = express.createServer()
+io = require('socket.io').listen(app)
+fs = require('fs')
 
 app.configure ->
   app.set('views', __dirname + '/views')
@@ -23,5 +25,12 @@ app.get('/', routes.index)
 app.get('/research/:area', routes.research)
 app.post('/tag', routes.postTag)
 app.get('/tag/:area', routes.researchGetTags)
-
 app.listen(3000)
+
+io.sockets.on('connection', (socket) ->
+
+	socket.on('addTaggedDocument', (data) ->
+		io.sockets.emit('taggedDocumentAdded', data)
+	)
+	
+)

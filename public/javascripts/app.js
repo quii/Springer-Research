@@ -1,5 +1,25 @@
 (function() {
-  var SearchResultCache, SpringerLite, Tagger, tagger;
+  var SearchResultCache, SocketSupport, SpringerLite, Tagger, tagger;
+
+  SocketSupport = (function() {
+
+    function SocketSupport() {
+      this.socket = io.connect('http://localhost');
+    }
+
+    SocketSupport.prototype.listen = function(name, callback) {
+      return this.socket.on(name, function(data) {
+        return callback(data);
+      });
+    };
+
+    SocketSupport.prototype.sendSocketData = function(name, data) {
+      return this.socket.emit(name, data);
+    };
+
+    return SocketSupport;
+
+  })();
 
   SearchResultCache = (function() {
 
@@ -39,17 +59,20 @@
     function Tagger() {
       this.registerTagButtons();
       this.getTaggedDocuments();
+      this.socketSupport = new SocketSupport();
+      this.listenForTagAdded();
     }
 
     Tagger.prototype.registerTagButtons = function() {
-      return $(".tag").live("click", function() {
+      var _this = this;
+      return $(".tag").live("click", function(event) {
         var tagData;
         tagData = {
-          doi: $(this).attr('doi'),
-          title: $(this).attr('title'),
-          area: $(this).attr('area')
+          doi: $(event.currentTarget).attr('doi'),
+          title: $(event.currentTarget).attr('title'),
+          area: $(event.currentTarget).attr('area')
         };
-        $("#tagged-container ol").append("<li><a href='" + tagData.url + "'>" + tagData.title + "</li>");
+        _this.socketSupport.sendSocketData('addTaggedDocument', tagData);
         $.ajax({
           type: 'POST',
           data: tagData,
@@ -77,6 +100,13 @@
       var renderedHTML;
       renderedHTML = Mustache.to_html($('#tagged-template').html(), json);
       return $('#tagged-container').html(renderedHTML);
+    };
+
+    Tagger.prototype.listenForTagAdded = function() {
+      return this.socketSupport.listen('taggedDocumentAdded', function(data) {
+        console.log("got some data added", data);
+        return $("#tagged-container ol").append("<li><a href='http://rd.springer.com/" + data.doi + "'>" + data.title + "</a></li>");
+      });
     };
 
     return Tagger;

@@ -2,16 +2,18 @@ class Tagger
 	constructor: ->
 		@registerTagButtons()
 		@getTaggedDocuments()
+		@socketSupport = new SocketSupport()
+		@listenForTagAdded()
 
 	registerTagButtons: ->
-		$(".tag").live("click", ->
+		$(".tag").live("click", (event) =>
 
 			tagData = 
-				doi: $(this).attr('doi'),
-				title: $(this).attr('title'),
-				area: $(this).attr('area')
+				doi: $(event.currentTarget).attr 'doi'
+				title: $(event.currentTarget).attr 'title'
+				area: $(event.currentTarget).attr 'area'
 
-			$("#tagged-container ol").append("<li><a href='#{tagData.url}'>#{tagData.title}</li>")
+			@socketSupport.sendSocketData('addTaggedDocument', tagData)
 			
 			$.ajax
 				type: 'POST'
@@ -33,5 +35,11 @@ class Tagger
 	renderTaggedDocuments = (json) ->
 		renderedHTML = Mustache.to_html($('#tagged-template').html(), json)
 		$('#tagged-container').html(renderedHTML)
+
+	listenForTagAdded: ->
+		@socketSupport.listen('taggedDocumentAdded', (data) ->
+			console.log("got some data added", data)
+			$("#tagged-container ol").append("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
+		)
 
 tagger = new Tagger()
