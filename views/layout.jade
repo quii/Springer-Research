@@ -19,9 +19,9 @@ html(lang='en')
         ol
           | {{#records}}
           li
-            a(href='{{url}}') {{title}}
+            a(href='http://rd.springer.com/{{doi}}') {{title}}
             | - 
-            a(href="#") Tag
+            a.tag(href="#", doi='{{doi}}', area='#{area}', title='{{title}}') Tag
           | {{/records}}
       #load-more.loading Load more
     footer

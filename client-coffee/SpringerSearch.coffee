@@ -1,19 +1,3 @@
-class SearchResultCache
-
-	addResultToCache: (term, renderedHTML) -> 
-		if @exists term
-			localStorage.setItem(term, (@getHtml(term)+renderedHTML))
-		else
-			localStorage.setItem(term, renderedHTML)
-
-	getHtml: (term) -> @findResult(term)
-
-	exists: (term) -> @findResult(term)?
-
-	findResult: (term) -> localStorage.getItem(term)
-
-	keys: -> Object.keys(localStorage)
-
 class SpringerLite
 
 	constructor: ->
@@ -46,6 +30,7 @@ class SpringerLite
 			dataType: 'jsonp'
 			type: 'GET'
 			success: (json) => 
+				console.log(json)
 				searchButtonElement.attr("value", "Search")
 				renderedHTML = Mustache.to_html($('#template').html(), json)
 				@resultsCache.addResultToCache(term, renderedHTML)

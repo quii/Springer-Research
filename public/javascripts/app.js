@@ -33,6 +33,21 @@
 
   })();
 
+  $(".tag").live("click", function() {
+    var tagData;
+    tagData = {
+      doi: $(this).attr('doi'),
+      title: $(this).attr('title'),
+      area: $(this).attr('area')
+    };
+    $.ajax({
+      type: 'POST',
+      data: tagData,
+      url: '/tag'
+    });
+    return false;
+  });
+
   SpringerLite = (function() {
     var loadMoreButton, resultsContainer, searchBox, searchButtonElement, stitchResults;
 
@@ -72,6 +87,7 @@
         type: 'GET',
         success: function(json) {
           var renderedHTML;
+          console.log(json);
           searchButtonElement.attr("value", "Search");
           renderedHTML = Mustache.to_html($('#template').html(), json);
           _this.resultsCache.addResultToCache(term, renderedHTML);

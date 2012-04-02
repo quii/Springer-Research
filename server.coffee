@@ -1,5 +1,6 @@
 express = require('express')
 routes = require('./routes')
+tagProvider = require('./server-coffee/tag-provider-mongo').TagProvider;
 
 app = module.exports = express.createServer()
 
@@ -21,5 +22,6 @@ app.configure('production', ->
 
 app.get('/', routes.index)
 app.get('/research/:area', routes.research)
+app.post('/tag', routes.postTag)
 
 app.listen(3000)
