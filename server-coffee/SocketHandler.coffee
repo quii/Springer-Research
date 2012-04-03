@@ -3,24 +3,31 @@ root = exports ? this
 class root.SocketHandler
 	constructor: (@app) ->
 		
-		realtime = require('./RealtimeResearchAreas')
-		@realtimeAreas = new realtime.RealtimeResearchAreas()
+		userLib = require('./User')
+		
+		@users = []
 
 		io = require('socket.io').listen(@app)
 		fs = require('fs')
 
 		io.sockets.on('connection', (socket) =>
 
+			newUser = new userLib.User(socket)
+			@users.push newUser
+
 			socket.on('addTaggedDocument', (data) ->
 				io.sockets.emit('taggedDocumentAdded', data)
 			)
 
-			socket.on('userInArea', (data) =>
-				@realtimeAreas.addUserToArea(data)
-				io.sockets.emit('newResearchHappening', @realtimeAreas.currentAreas)
+			socket.on('whereAmI', (data) =>
+				socket.get('name', (err, name) =>
+					userToUpdate = userLib.User.findUser(@users, name)
+					userToUpdate.location = data
+					io.sockets.emit('newResearchHappening', userLib.User.currentResearch(@users))
+				)
 			)
 
 			socket.on('whatsBeingResearched', (from, f) =>
-				f(@realtimeAreas.currentAreas)
+				f(userLib.User.currentResearch(@users))
 			)
 		)

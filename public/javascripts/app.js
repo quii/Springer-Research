@@ -35,10 +35,15 @@
       this.currentResearch = [];
       this.askForRealtimeInfo();
       this.listenForNewAreasBeingResearched();
+      this.tellServerImHome();
     }
 
     Home.prototype.askForRealtimeInfo = function() {
       return this.socketSupport.sendRecieveData("whatsBeingResearched", {}, this.displayCurrentResearch);
+    };
+
+    Home.prototype.tellServerImHome = function() {
+      return this.socketSupport.sendSocketData("whereAmI", "home");
     };
 
     Home.prototype.listenForNewAreasBeingResearched = function() {
@@ -113,7 +118,7 @@
       this.getTaggedDocuments();
       this.socketSupport = new SocketSupport();
       this.listenForTagAdded();
-      this.tellServerImLookingAtTag();
+      this.socketSupport.sendSocketData("whereAmI", this.areaName);
     }
 
     Tagger.prototype.registerTagButtons = function() {
@@ -160,16 +165,6 @@
       return this.socketSupport.listen('taggedDocumentAdded', function(data) {
         return $("#tagged-container ol").append("<li><a href='http://rd.springer.com/" + data.doi + "'>" + data.title + "</a></li>");
       });
-    };
-
-    Tagger.prototype.listenForWhosWhere = function() {
-      return this.socketSupport.listen('whosWhere', function() {
-        return this.tellServerImLookingAtTag;
-      });
-    };
-
-    Tagger.prototype.tellServerImLookingAtTag = function() {
-      return this.socketSupport.sendSocketData('userInArea', this.areaName);
     };
 
     return Tagger;

@@ -4,9 +4,12 @@ class Home
 		@currentResearch = []
 		@askForRealtimeInfo()
 		@listenForNewAreasBeingResearched()
+		@tellServerImHome()
 
 	askForRealtimeInfo: ->
 		@socketSupport.sendRecieveData("whatsBeingResearched", {}, @displayCurrentResearch)
+
+	tellServerImHome: -> @socketSupport.sendSocketData("whereAmI", "home")
 
 	listenForNewAreasBeingResearched: ->
 		@socketSupport.listen("newResearchHappening", @displayCurrentResearch)
