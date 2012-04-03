@@ -123,14 +123,15 @@
       this.handleSubmit();
       this.handleLoadMore();
       this.handleEmpty();
-      this.handleAutoComplete();
+      loadMoreButton.hide();
     }
 
     SpringerLite.prototype.doSearch = function(page) {
       searchButtonElement.attr("value", "Searching");
       this.term = searchBox.val();
       if (this.resultsCache.exists(this.term)) {
-        return this.renderResult(this.term);
+        this.renderResult(this.term);
+        return loadMoreButton.show();
       } else {
         return this.getResult(this.term);
       }
@@ -171,16 +172,6 @@
       return loadMoreButton.show();
     };
 
-    SpringerLite.prototype.handleAutoComplete = function() {
-      var _this = this;
-      return searchBox.autocomplete({
-        source: this.resultsCache.keys(),
-        select: function() {
-          return _this.renderResult(searchBox.val());
-        }
-      });
-    };
-
     SpringerLite.prototype.handleSubmit = function() {
       var _this = this;
       return $("#search-form").submit(function(e) {
@@ -191,6 +182,7 @@
 
     SpringerLite.prototype.handleLoadMore = function() {
       var _this = this;
+      console.log("handing load more");
       return loadMoreButton.click(function() {
         var nextPageNumber, numberOfResultsOnPage;
         numberOfResultsOnPage = $("li").length - 1;

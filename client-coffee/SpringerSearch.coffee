@@ -5,7 +5,7 @@ class SpringerLite
 		@handleSubmit()
 		@handleLoadMore()
 		@handleEmpty()
-		@handleAutoComplete()
+		loadMoreButton.hide()
 
 	doSearch: (page) ->
 		searchButtonElement.attr("value", "Searching")
@@ -13,6 +13,7 @@ class SpringerLite
 
 		if(@resultsCache.exists(@term))
 			@renderResult(@term)
+			loadMoreButton.show()
 		else
 			@getResult(@term)
 
@@ -43,19 +44,13 @@ class SpringerLite
 		loadMoreButton.text("Load more")
 		loadMoreButton.show()
 
-	handleAutoComplete: ->
-		searchBox.autocomplete {
-			source: @resultsCache.keys()
-			select: => @renderResult(searchBox.val())
-		}
-
-
 	handleSubmit: ->
 		$("#search-form").submit (e) =>
 			e.preventDefault() 
 			this.doSearch()
 
 	handleLoadMore: ->
+		console.log("handing load more")
 		loadMoreButton.click =>
 			numberOfResultsOnPage = $("li").length-1
 			nextPageNumber = (numberOfResultsOnPage/10)+1

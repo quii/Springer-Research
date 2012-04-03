@@ -1,22 +1,27 @@
+section
+  h2 Research #{area}
+  p Conduct some research on #{area} and share useful links with other researchers. Mark results as useful by clicking on the tag button.
+  div#area-id(style="display:none;") #{area}
+
 section#search-section
+  h2 Search Springer's content database
   form#search-form
     label(for='search', placeholder='type search here') Search
     input#search(type='text', name='search')
     input#search-button(type='submit', value='Search', autocomplete='off')
-section
-  #results
-  #template(style='display: none;')
-    ol
-      | {{#records}}
-      li
-        a(href='http://rd.springer.com/{{doi}}') {{title}}
-        | - 
-        a.tag(href="#", doi='{{doi}}', area='#{area}', title='{{title}}') Tag
-      | {{/records}}
-  #load-more.loading Load more
-  p
-    a#empty-cache(href='#') Empty saved searches
-h2 Research #{area}
-p Conduct some research on #{area} and share useful links with other researchers. Mark results as useful by clicking on them.
-div#area-id(style="display:none;") #{area}
-include tagged_docs.jade
+  section
+    #results
+    #template(style='display: none;')
+      ol
+        | {{#records}}
+        li
+          a(href='http://rd.springer.com/{{doi}}') {{title}}
+          | - 
+          a.tag(href="#", doi='{{doi}}', area='#{area}', title='{{title}}') Tag
+        | {{/records}}
+      p
+        a#empty-cache(href='#') Empty saved searches
+    a#load-more Load more
+
+section#tagged
+  include tagged_docs.jade
