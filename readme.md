@@ -16,8 +16,10 @@
 	- Show content type, authors, etc
 
 # Refactoring required
-- Extract the socket handling away from server.coffee into it's own helper
 - Refactor jade files, layout has too much stuff in it
+
+# Bugs
+- Only works on coffeescript?
 
 # How to start mongo:
 sudo mongod run --config /usr/local/Cellar/mongodb/2.0.3-x86_64/mongod.conf

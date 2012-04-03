@@ -3,6 +3,8 @@ routes = require('./routes')
 
 app = module.exports = express.createServer()
 
+app.use(express.bodyParser())
+
 app.configure ->
   app.set('views', __dirname + '/views')
   app.set('view engine', 'jade')
@@ -20,7 +22,10 @@ app.configure('production', ->
 )
 
 app.get('/', routes.index)
+app.post('/', routes.indexPost)
+
 app.get('/research/:area', routes.research)
+
 app.post('/tag', routes.postTag)
 app.get('/tag/:area', routes.researchGetTags)
 app.listen(3000)

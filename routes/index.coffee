@@ -2,10 +2,13 @@ db = require('./../server-coffee/tag-provider-mongo')
 tagProvider = new db.TagProvider('localhost', 27017)
 
 exports.index = (req, res) ->
-  res.render('index', { title: 'Express' })
+	res.render('index', { title: 'Express' })
+
+exports.indexPost = (req, res) ->
+	res.redirect("/research/#{req.body.research.area}")
 
 exports.research = (req, res) ->
-  res.render('research_area', { area: req.params.area })
+	res.render('research_area', { area: req.params.area })
 
 exports.postTag = (req, res) ->
 	tagProvider.insert(req.body)
