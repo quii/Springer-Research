@@ -24,8 +24,6 @@ class root.SocketHandler
 					userToUpdate = userLib.User.findUser(@users, name)
 					userToUpdate.location = data
 					io.sockets.emit('newResearchHappening', userLib.User.currentResearch(@users))
-					console.log("current locations = ", userLib.User.currentLocations(@users))
-					console.log("user count = ", @users.length)
 				)
 			)
 

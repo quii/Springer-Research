@@ -114,6 +114,7 @@
 
     function Tagger() {
       this.areaName = $("#area-id").text();
+      console.log("area name = ", this.areaName);
       this.registerTagButtons();
       this.getTaggedDocuments();
       this.socketSupport = new SocketSupport();

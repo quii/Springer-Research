@@ -1,6 +1,7 @@
 class Tagger
 	constructor: ->
 		@areaName = $("#area-id").text()
+		console.log("area name = ", @areaName)
 		@registerTagButtons()
 		@getTaggedDocuments()
 		@socketSupport = new SocketSupport()
