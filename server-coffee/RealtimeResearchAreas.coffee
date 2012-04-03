@@ -6,8 +6,8 @@ class root.RealtimeResearchAreas
 		@currentAreas = {}
 	
 	addUserToArea: (area) ->
-		console.log("adding user to area")
-
+		@currentAreas[area] = 1
+		
 	removeUserFromArea: (area) ->
 
 	getUserCount: (area) ->

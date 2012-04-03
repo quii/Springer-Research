@@ -51,7 +51,7 @@ class Tagger
 		)
 
 	tellServerImLookingAtTag: ->
-		@socketSupport.sendSocketData('userInArea', {@areaName})
+		@socketSupport.sendSocketData('userInArea', @areaName)
 
 $ ->
 	if($("#tagged-container").length>0)

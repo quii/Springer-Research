@@ -34,15 +34,20 @@
       this.displayCurrentResearch = __bind(this.displayCurrentResearch, this);      this.socketSupport = new SocketSupport();
       this.currentResearch = [];
       this.askForRealtimeInfo();
+      this.listenForNewAreasBeingResearched();
     }
 
     Home.prototype.askForRealtimeInfo = function() {
-      console.log();
       return this.socketSupport.sendRecieveData("whatsBeingResearched", {}, this.displayCurrentResearch);
+    };
+
+    Home.prototype.listenForNewAreasBeingResearched = function() {
+      return this.socketSupport.listen("newResearchHappening", this.displayCurrentResearch);
     };
 
     Home.prototype.displayCurrentResearch = function(data) {
       var areas, key, renderedHTML, val;
+      console.log("data recieved = ", data);
       areas = [];
       for (key in data) {
         val = data[key];
@@ -164,9 +169,7 @@
     };
 
     Tagger.prototype.tellServerImLookingAtTag = function() {
-      return this.socketSupport.sendSocketData('userInArea', {
-        areaName: this.areaName
-      });
+      return this.socketSupport.sendSocketData('userInArea', this.areaName);
     };
 
     return Tagger;

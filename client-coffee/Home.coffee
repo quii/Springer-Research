@@ -3,12 +3,16 @@ class Home
 		@socketSupport = new SocketSupport()
 		@currentResearch = []
 		@askForRealtimeInfo()
+		@listenForNewAreasBeingResearched()
 
 	askForRealtimeInfo: ->
-		console.log()
 		@socketSupport.sendRecieveData("whatsBeingResearched", {}, @displayCurrentResearch)
 
+	listenForNewAreasBeingResearched: ->
+		@socketSupport.listen("newResearchHappening", @displayCurrentResearch)
+
 	displayCurrentResearch: (data) =>
+		console.log("data recieved = ", data)
 		areas = []
 		for key, val of data
 			areas.push({name: key, number: val})
