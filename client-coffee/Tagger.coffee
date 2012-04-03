@@ -1,5 +1,6 @@
 class Tagger
 	constructor: ->
+		@areaName = $("#area-id").text()
 		@registerTagButtons()
 		@getTaggedDocuments()
 		@socketSupport = new SocketSupport()
@@ -14,6 +15,8 @@ class Tagger
 				area: $(event.currentTarget).attr 'area'
 
 			@socketSupport.sendSocketData('addTaggedDocument', tagData)
+
+			console.log("posting tag data: #{tagData}")
 			
 			$.ajax
 				type: 'POST'
@@ -24,8 +27,8 @@ class Tagger
 		)
 		
 	getTaggedDocuments: ->
-		areaName = $("#area-id").text()
-		url = "/tag/#{areaName}"
+		url = "/tag/#{@areaName}"
+		console.log("trying to get from #{url}")
 		$.ajax
 			url: url
 			dataType: 'json'
@@ -38,8 +41,8 @@ class Tagger
 
 	listenForTagAdded: ->
 		@socketSupport.listen('taggedDocumentAdded', (data) ->
-			console.log("got some data added", data)
 			$("#tagged-container ol").append("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
 		)
-
-tagger = new Tagger()
+$ ->
+	if($("#tagged-container").length>0)
+		tagger = new Tagger()

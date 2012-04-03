@@ -1,5 +1,5 @@
 (function() {
-  var SearchResultCache, SocketSupport, SpringerLite, Tagger, tagger;
+  var SearchResultCache, SocketSupport, SpringerLite, Tagger;
 
   SocketSupport = (function() {
 
@@ -57,6 +57,7 @@
     var renderTaggedDocuments;
 
     function Tagger() {
+      this.areaName = $("#area-id").text();
       this.registerTagButtons();
       this.getTaggedDocuments();
       this.socketSupport = new SocketSupport();
@@ -73,6 +74,7 @@
           area: $(event.currentTarget).attr('area')
         };
         _this.socketSupport.sendSocketData('addTaggedDocument', tagData);
+        console.log("posting tag data: " + tagData);
         $.ajax({
           type: 'POST',
           data: tagData,
@@ -83,9 +85,9 @@
     };
 
     Tagger.prototype.getTaggedDocuments = function() {
-      var areaName, url;
-      areaName = $("#area-id").text();
-      url = "/tag/" + areaName;
+      var url;
+      url = "/tag/" + this.areaName;
+      console.log("trying to get from " + url);
       return $.ajax({
         url: url,
         dataType: 'json',
@@ -104,7 +106,6 @@
 
     Tagger.prototype.listenForTagAdded = function() {
       return this.socketSupport.listen('taggedDocumentAdded', function(data) {
-        console.log("got some data added", data);
         return $("#tagged-container ol").append("<li><a href='http://rd.springer.com/" + data.doi + "'>" + data.title + "</a></li>");
       });
     };
@@ -113,7 +114,10 @@
 
   })();
 
-  tagger = new Tagger();
+  $(function() {
+    var tagger;
+    if ($("#tagged-container").length > 0) return tagger = new Tagger();
+  });
 
   SpringerLite = (function() {
     var loadMoreButton, resultsContainer, searchBox, searchButtonElement, stitchResults;
@@ -155,7 +159,6 @@
         type: 'GET',
         success: function(json) {
           var renderedHTML;
-          console.log(json);
           searchButtonElement.attr("value", "Search");
           renderedHTML = Mustache.to_html($('#template').html(), json);
           _this.resultsCache.addResultToCache(term, renderedHTML);
@@ -182,7 +185,6 @@
 
     SpringerLite.prototype.handleLoadMore = function() {
       var _this = this;
-      console.log("handing load more");
       return loadMoreButton.click(function() {
         var nextPageNumber, numberOfResultsOnPage;
         numberOfResultsOnPage = $("li").length - 1;
@@ -233,7 +235,7 @@
 
   $(function() {
     var site;
-    return site = new SpringerLite();
+    if ($("#search").length > 0) return site = new SpringerLite();
   });
 
 }).call(this);

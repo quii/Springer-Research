@@ -30,4 +30,4 @@ app.post('/tag', routes.postTag)
 app.get('/tag/:area', routes.researchGetTags)
 app.listen(3000)
 
-socketSupport = require('./server-coffee/SocketHandler').SocketHandler(app)
+socketHandler = require('./server-coffee/SocketHandler').SocketHandler(app)

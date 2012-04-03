@@ -31,7 +31,6 @@ class SpringerLite
 			dataType: 'jsonp'
 			type: 'GET'
 			success: (json) => 
-				console.log(json)
 				searchButtonElement.attr("value", "Search")
 				renderedHTML = Mustache.to_html($('#template').html(), json)
 				@resultsCache.addResultToCache(term, renderedHTML)
@@ -50,7 +49,6 @@ class SpringerLite
 			this.doSearch()
 
 	handleLoadMore: ->
-		console.log("handing load more")
 		loadMoreButton.click =>
 			numberOfResultsOnPage = $("li").length-1
 			nextPageNumber = (numberOfResultsOnPage/10)+1
@@ -64,7 +62,6 @@ class SpringerLite
 			false
 
 	stitchResults = ->
-		#combine lists, bit hacky :)
 		numberOfLists = resultsContainer.find("ol").length
 		if(numberOfLists>1)
 			resultsContainer.find("li").each ->
@@ -78,4 +75,5 @@ class SpringerLite
 	searchBox = do -> $("#search")
 
 $ ->
-	site = new SpringerLite()
+	if($("#search").length>0)
+		site = new SpringerLite()

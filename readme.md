@@ -2,7 +2,7 @@
 
 - Design
 
-- Home page. Show top tags and a searchbox with "I want to research: ". Possibly later show what is being researched in realtime
+- Home page. Show what is being researched right now
 
 - Make the tagging system more robust. Currently you can add the same tag twice, need to group them (or add count?) and then order them by number of hits
 
@@ -16,10 +16,8 @@
 	- Show content type, authors, etc
 
 # Refactoring required
-- Refactor jade files, layout has too much stuff in it
 
 # Bugs
-- Only works on coffeescript?
 
 # How to start mongo:
 sudo mongod run --config /usr/local/Cellar/mongodb/2.0.3-x86_64/mongod.conf
