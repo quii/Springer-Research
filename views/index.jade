@@ -3,3 +3,14 @@ h1 What do you want to research?
 form(method="post", action="/")
   input(type="text", name="research[area]")
   input(type="submit", value="Go")
+
+div#isHome(style="display:none;")
+
+#current-research-container
+#current-research-template(style='display: none;')
+  h2 Subject's being researched right now
+  ol
+    | {{#results}}
+    li
+      a(href='/research/{{name}}') {{name}} ({{number}} people)
+    | {{/results}}

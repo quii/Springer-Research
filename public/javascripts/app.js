@@ -1,5 +1,6 @@
 (function() {
-  var SearchResultCache, SocketSupport, SpringerLite, Tagger;
+  var Home, SearchResultCache, SocketSupport, SpringerLite, Tagger,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   SocketSupport = (function() {
 
@@ -17,9 +18,54 @@
       return this.socket.emit(name, data);
     };
 
+    SocketSupport.prototype.sendRecieveData = function(name, data, callback) {
+      return this.socket.emit(name, data, function(recievedData) {
+        return callback(recievedData);
+      });
+    };
+
     return SocketSupport;
 
   })();
+
+  Home = (function() {
+
+    function Home() {
+      this.displayCurrentResearch = __bind(this.displayCurrentResearch, this);      this.socketSupport = new SocketSupport();
+      this.currentResearch = [];
+      this.askForRealtimeInfo();
+    }
+
+    Home.prototype.askForRealtimeInfo = function() {
+      console.log();
+      return this.socketSupport.sendRecieveData("whatsBeingResearched", {}, this.displayCurrentResearch);
+    };
+
+    Home.prototype.displayCurrentResearch = function(data) {
+      var areas, key, renderedHTML, val;
+      areas = [];
+      for (key in data) {
+        val = data[key];
+        areas.push({
+          name: key,
+          number: val
+        });
+      }
+      this.currentResearch = {
+        results: areas
+      };
+      renderedHTML = Mustache.to_html($('#current-research-template').html(), this.currentResearch);
+      return $('#current-research-container').html(renderedHTML);
+    };
+
+    return Home;
+
+  })();
+
+  $(function() {
+    var home;
+    if ($("#isHome").length > 0) return home = new Home();
+  });
 
   SearchResultCache = (function() {
 
@@ -62,6 +108,7 @@
       this.getTaggedDocuments();
       this.socketSupport = new SocketSupport();
       this.listenForTagAdded();
+      this.tellServerImLookingAtTag();
     }
 
     Tagger.prototype.registerTagButtons = function() {
@@ -107,6 +154,18 @@
     Tagger.prototype.listenForTagAdded = function() {
       return this.socketSupport.listen('taggedDocumentAdded', function(data) {
         return $("#tagged-container ol").append("<li><a href='http://rd.springer.com/" + data.doi + "'>" + data.title + "</a></li>");
+      });
+    };
+
+    Tagger.prototype.listenForWhosWhere = function() {
+      return this.socketSupport.listen('whosWhere', function() {
+        return this.tellServerImLookingAtTag;
+      });
+    };
+
+    Tagger.prototype.tellServerImLookingAtTag = function() {
+      return this.socketSupport.sendSocketData('userInArea', {
+        areaName: this.areaName
       });
     };
 

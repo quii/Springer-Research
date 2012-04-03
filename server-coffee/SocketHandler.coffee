@@ -15,6 +15,13 @@ class root.SocketHandler
 			)
 
 			socket.on('userInArea', (data) ->
-				@realtimeAreas.addUserToArea(data)
+				#@realtimeAreas.addUserToArea(data)
+			)
+
+			socket.on('whatsBeingResearched', (from, f) ->
+				areas = 
+					"coffeescript": 2
+					"apple": 3
+				f(areas)
 			)
 		)

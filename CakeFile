@@ -3,6 +3,7 @@ fs         = require 'fs'
 
 appFiles  = [
   'client-coffee/SocketSupport.coffee'
+  'client-coffee/Home.coffee'
   'client-coffee/ResultsCache.coffee'
   'client-coffee/Tagger.coffee'
   'client-coffee/SpringerSearch.coffee'
@@ -32,7 +33,7 @@ task 'build', 'Build single application file from source files', ->
       throw err if err
       exec 'coffee --compile public/javascripts/app.coffee', (err, stdout, stderr) ->
         if err
-          console.log 'Error compiling coffee file.'
+          console.log "Error compiling coffee file. #{err}"
         else
           fs.unlink 'public/javascripts/app.coffee', (err) ->
             if err

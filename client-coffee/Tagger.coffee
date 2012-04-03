@@ -5,6 +5,7 @@ class Tagger
 		@getTaggedDocuments()
 		@socketSupport = new SocketSupport()
 		@listenForTagAdded()
+		@tellServerImLookingAtTag()
 
 	registerTagButtons: ->
 		$(".tag").live("click", (event) =>
@@ -43,6 +44,15 @@ class Tagger
 		@socketSupport.listen('taggedDocumentAdded', (data) ->
 			$("#tagged-container ol").append("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
 		)
+
+	listenForWhosWhere: ->
+		@socketSupport.listen('whosWhere', ->
+			@tellServerImLookingAtTag
+		)
+
+	tellServerImLookingAtTag: ->
+		@socketSupport.sendSocketData('userInArea', {@areaName})
+
 $ ->
 	if($("#tagged-container").length>0)
 		tagger = new Tagger()
