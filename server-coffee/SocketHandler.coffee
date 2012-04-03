@@ -24,10 +24,19 @@ class root.SocketHandler
 					userToUpdate = userLib.User.findUser(@users, name)
 					userToUpdate.location = data
 					io.sockets.emit('newResearchHappening', userLib.User.currentResearch(@users))
+					console.log("current locations = ", userLib.User.currentLocations(@users))
+					console.log("user count = ", @users.length)
 				)
 			)
 
 			socket.on('whatsBeingResearched', (from, f) =>
 				f(userLib.User.currentResearch(@users))
+			)
+
+			socket.on('disconnect', =>
+				socket.get('name', (err, name) =>
+					@users = (@users.filter (user) -> user.name!=name)
+					io.sockets.emit('newResearchHappening', userLib.User.currentResearch(@users))
+				)
 			)
 		)
