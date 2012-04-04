@@ -15,7 +15,8 @@ class Chat
 
 	listenForOtherUsers: =>
 		@socketSupport.listen("newResearchHappening", (data) =>
-			@numberOfUsers = data["coffee"]
+			@numberOfUsers = data[@areaName]
+			console.log "number of users is #{@numberOfUsers}"
 			@showHideChat()
 		)
 

@@ -133,7 +133,8 @@
     Chat.prototype.listenForOtherUsers = function() {
       var _this = this;
       return this.socketSupport.listen("newResearchHappening", function(data) {
-        _this.numberOfUsers = data["coffee"];
+        _this.numberOfUsers = data[_this.areaName];
+        console.log("number of users is " + _this.numberOfUsers);
         return _this.showHideChat();
       });
     };
