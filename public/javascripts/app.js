@@ -1,6 +1,30 @@
 (function() {
-  var Chat, Home, SearchResultCache, SocketSupport, SpringerLite, Tagger,
+  var Chat, Home, InputValidation, SearchResultCache, SocketSupport, SpringerLite, Tagger,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  InputValidation = (function() {
+
+    function InputValidation() {}
+
+    InputValidation.validate = function(el) {
+      return el.val(this.replaceHTML(el.val()));
+    };
+
+    InputValidation.replaceHTML = function(str) {
+      return str.replace(/[&<>"']/g, function($0) {
+        return "&" + {
+          "&": "amp",
+          "<": "lt",
+          ">": "gt",
+          '"': "quot",
+          "'": "#39"
+        }[$0] + ";";
+      });
+    };
+
+    return InputValidation;
+
+  })();
 
   SocketSupport = (function() {
 

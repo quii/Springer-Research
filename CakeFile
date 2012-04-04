@@ -2,6 +2,7 @@ fs         = require 'fs'
 {exec}     = require 'child_process'
 
 appFiles  = [
+  'client-coffee/InputValidation.coffee'
   'client-coffee/SocketSupport.coffee'
   'client-coffee/Home.coffee'
   'client-coffee/ResultsCache.coffee'
