@@ -260,8 +260,9 @@
         tagData = {
           doi: $(event.currentTarget).attr('doi'),
           title: $(event.currentTarget).attr('title'),
-          area: $(event.currentTarget).attr('area')
+          area: _this.areaName
         };
+        console.log("tag data = ", tagData);
         _this.socketSupport.sendSocketData('addTaggedDocument', tagData);
         $.ajax({
           type: 'POST',

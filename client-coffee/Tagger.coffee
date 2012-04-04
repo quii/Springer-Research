@@ -14,7 +14,9 @@ class Tagger
 			tagData = 
 				doi: $(event.currentTarget).attr 'doi'
 				title: $(event.currentTarget).attr 'title'
-				area: $(event.currentTarget).attr 'area'
+				area: @areaName
+
+			console.log("tag data = ", tagData)
 
 			@socketSupport.sendSocketData('addTaggedDocument', tagData)
 			

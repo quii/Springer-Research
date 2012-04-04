@@ -5,9 +5,11 @@ exports.index = (req, res) ->
 	res.render('index', { title: 'Express' })
 
 exports.indexPost = (req, res) ->
+	console.log("researching #{req.body.research.area}")
 	res.redirect("/research/#{req.body.research.area}")
 
 exports.research = (req, res) ->
+	console.log("get to research #{req.params.area}")
 	res.render('research_area', { area: req.params.area })
 
 exports.postTag = (req, res) ->

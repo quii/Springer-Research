@@ -17,11 +17,11 @@ section#search-section
         li
           a(href='http://rd.springer.com/{{doi}}') {{title}}
           | - 
-          a.tag(href="#", doi='{{doi}}', area='#{area}', title='{{title}}') Tag
+          a.tag(href="#", doi='{{doi}}', title='{{title}}') Tag
         | {{/records}}
-      p
-        a#empty-cache(href='#') Empty saved searches
     a#load-more Load more
+    p
+      a#empty-cache(href='#') Empty saved searches
 
 include chat.jade
 
