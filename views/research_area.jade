@@ -11,7 +11,7 @@ section#search-section
     input#search-button(type='submit', value='Search', autocomplete='off')
   section
     #results
-    #template(style='display: none;')
+    script#template(style='display: none;', type="text/x-mustache")
       ol
         | {{#records}}
         li
