@@ -1,8 +1,8 @@
 # Features to do (prioritized)
 
-- Design
+- Home button
 
-- Host it, Tom is on the case hopefully
+- Regex on the inputs
 
 - Show other tags for a given document
 
@@ -30,5 +30,5 @@ sudo mongod run --config /usr/local/Cellar/mongodb/2.0.3-x86_64/mongod.conf
 http://howtonode.org/express-mongodb
 
 
-
+# Need to automate deployment! 
 scp -r -i ~/Downloads/aws.pem SpringerResearch ubuntu@ec2-184-73-142-156.compute-1.amazonaws.com:/home/ubuntu/SpringerResearch

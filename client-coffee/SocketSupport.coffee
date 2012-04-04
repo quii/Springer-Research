@@ -1,5 +1,5 @@
 class SocketSupport
-	constructor: -> @socket = io.connect('http://ec2-184-73-142-156.compute-1.amazonaws.com');
+	constructor: -> @socket = io.connect(window.location.hostname);
 
 	listen: (name, callback) -> @socket.on(name, (data) -> callback(data))
 

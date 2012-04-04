@@ -5,7 +5,7 @@
   SocketSupport = (function() {
 
     function SocketSupport() {
-      this.socket = io.connect('http://ec2-184-73-142-156.compute-1.amazonaws.com');
+      this.socket = io.connect(window.location.hostname);
     }
 
     SocketSupport.prototype.listen = function(name, callback) {
