@@ -16,8 +16,9 @@ class Chat
 	listenForOtherUsers: =>
 		@socketSupport.listen("newResearchHappening", (data) =>
 			@numberOfUsers = data[@areaName]
-			console.log "number of users is #{@numberOfUsers}"
 			@showHideChat()
+			numberOfUsersSpan.text(@numberOfUsers-1)
+			areaSpan.text(@areaName)
 		)
 
 	handleUsernameEntered: =>
@@ -67,6 +68,8 @@ class Chat
 	onChatPage = do -> chatWrapper.length>0
 	chatInput = do -> $("section#chat .text-input")
 	aliasInput = do -> $("section#chat .alias")
+	numberOfUsersSpan = do -> $("#chat .number-of-users")
+	areaSpan = do -> $("#chat .chat-area")
 
 $ ->
 	chat = new Chat()

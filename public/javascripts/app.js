@@ -110,7 +110,7 @@
   })();
 
   Chat = (function() {
-    var aliasInput, chatInput, chatWrapper, onChatPage;
+    var aliasInput, areaSpan, chatInput, chatWrapper, numberOfUsersSpan, onChatPage;
 
     function Chat() {
       this.listenForChat = __bind(this.listenForChat, this);
@@ -134,8 +134,9 @@
       var _this = this;
       return this.socketSupport.listen("newResearchHappening", function(data) {
         _this.numberOfUsers = data[_this.areaName];
-        console.log("number of users is " + _this.numberOfUsers);
-        return _this.showHideChat();
+        _this.showHideChat();
+        numberOfUsersSpan.text(_this.numberOfUsers - 1);
+        return areaSpan.text(_this.areaName);
       });
     };
 
@@ -231,6 +232,14 @@
 
     aliasInput = (function() {
       return $("section#chat .alias");
+    })();
+
+    numberOfUsersSpan = (function() {
+      return $("#chat .number-of-users");
+    })();
+
+    areaSpan = (function() {
+      return $("#chat .chat-area");
     })();
 
     return Chat;
