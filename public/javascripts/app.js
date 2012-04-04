@@ -112,7 +112,7 @@
   })();
 
   Chat = (function() {
-    var aliasInput, areaSpan, chatInput, chatWrapper, numberOfUsersSpan, onChatPage;
+    var aliasInput, areaSpan, chatForm, chatInput, chatWrapper, numberOfUsersSpan, onChatPage;
 
     function Chat() {
       this.listenForChat = __bind(this.listenForChat, this);
@@ -124,7 +124,7 @@
         this.numberOfUsers = 1;
         this.showHideChat;
         this.userName = "";
-        this.disableChatInput();
+        this.hideChatForm();
         this.listenForOtherUsers();
         this.handleUsernameEntered();
         this.handleChatEntered();
@@ -148,12 +148,9 @@
         e.preventDefault();
         _this.userName = $("#chat .alias").val();
         if (_this.userName.length > 0) {
-          _this.enableChatInput();
+          _this.showChatForm();
           chatInput.focus();
-          _this.hideAliasForm();
-          return console.log("hiding form");
-        } else {
-          return _this.disableChatInput();
+          return _this.hideAliasForm();
         }
       });
     };
@@ -208,12 +205,12 @@
       return chatWrapper.hide();
     };
 
-    Chat.prototype.disableChatInput = function() {
-      return chatInput.attr('disabled', 'disabled');
+    Chat.prototype.hideChatForm = function() {
+      return chatForm.hide();
     };
 
-    Chat.prototype.enableChatInput = function() {
-      return chatInput.removeAttr('disabled');
+    Chat.prototype.showChatForm = function() {
+      return chatForm.show();
     };
 
     Chat.prototype.hideAliasForm = function() {
@@ -230,6 +227,10 @@
 
     chatInput = (function() {
       return $("section#chat .text-input");
+    })();
+
+    chatForm = (function() {
+      return $("#chat .chat-form");
     })();
 
     aliasInput = (function() {

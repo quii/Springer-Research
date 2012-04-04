@@ -1,16 +1,17 @@
 section#chat
   h2 Chat with other researchers
+  
   p
     | There is(are)
     strong.number-of-users
     |  other researcher(s) online interested in
     strong.chat-area
-
+  
+  ul#messages
+  
   form.alias-form
     input.alias(type="text", placeholder="enter nickname and hit enter")
     input(type="submit", value="Go")
-
-  ul#messages
 
   form.chat-form
     label(for="text-input") Message:

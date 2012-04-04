@@ -2,8 +2,6 @@
 
 - Design
 
-- Basic chat on research area when more than one client is connected and viewing that area
-
 - Make the tagging system more robust. Currently you can add the same tag twice, need to group them (or add count?) and then order them by number of hits
 
 - Host it, probably on heroku
@@ -23,8 +21,7 @@
 - Make the cake file a little more configurable
 
 # Bugs
-- Count of people researching is wrong
-- Adding tags is still sometimes dodgy, seems to be using a previous area name sometimes, or something
+- When a person leaves a research page, a client on the homepage doesn't recieve an update
 
 # How to start mongo:
 sudo mongod run --config /usr/local/Cellar/mongodb/2.0.3-x86_64/mongod.conf

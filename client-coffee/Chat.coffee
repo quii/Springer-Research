@@ -7,7 +7,7 @@ class Chat
 			@numberOfUsers = 1
 			@showHideChat
 			@userName=""
-			@disableChatInput()
+			@hideChatForm()
 			@listenForOtherUsers()
 			@handleUsernameEntered()
 			@handleChatEntered()
@@ -26,12 +26,9 @@ class Chat
 			e.preventDefault() 
 			@userName = $("#chat .alias").val()
 			if @userName.length>0
-				@enableChatInput() 
+				@showChatForm() 
 				chatInput.focus()
 				@hideAliasForm()
-				console.log("hiding form")
-			else 
-				@disableChatInput()
 
 	handleChatEntered: =>
 		$("#chat .chat-form").submit (e) =>
@@ -60,13 +57,15 @@ class Chat
 	
 	displayChat: -> chatWrapper.show()
 	hideChat: -> chatWrapper.hide()
-	disableChatInput: -> chatInput.attr('disabled', 'disabled')
-	enableChatInput: -> chatInput.removeAttr('disabled');
+	hideChatForm: -> chatForm.hide()
+	showChatForm: -> chatForm.show()
 	hideAliasForm: -> $("#chat .alias-form").hide()
+
 
 	chatWrapper = do -> $("section#chat")
 	onChatPage = do -> chatWrapper.length>0
 	chatInput = do -> $("section#chat .text-input")
+	chatForm = do -> $("#chat .chat-form")
 	aliasInput = do -> $("section#chat .alias")
 	numberOfUsersSpan = do -> $("#chat .number-of-users")
 	areaSpan = do -> $("#chat .chat-area")
