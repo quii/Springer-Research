@@ -7,11 +7,11 @@
     function InputValidation() {}
 
     InputValidation.validate = function(el) {
-      return el.val(this.replaceHTML(el.val()));
+      return true;
     };
 
     InputValidation.replaceHTML = function(str) {
-      return str.replace(/[&<>"']/g, function($0) {
+      str.replace(/[&<>"']/g, function($0) {
         return "&" + {
           "&": "amp",
           "<": "lt",
@@ -20,6 +20,16 @@
           "'": "#39"
         }[$0] + ";";
       });
+      return this.noFunnyChars = function(str) {
+        var pattern;
+        pattern = /^([a-zA-Z0-9,-]|\s)*$/;
+        return console.log(pattern.test(str));
+      };
+    };
+
+    InputValidation.isEmptyString = function(s) {
+      if (s instanceof String && s.length === 0) return true;
+      return s === '';
     };
 
     return InputValidation;
@@ -76,7 +86,6 @@
 
     Home.prototype.displayCurrentResearch = function(data) {
       var areas, key, renderedHTML, val;
-      console.log("data recieved = ", data);
       areas = [];
       for (key in data) {
         val = data[key];
@@ -172,8 +181,8 @@
       var _this = this;
       return $("#chat .alias-form").submit(function(e) {
         e.preventDefault();
-        _this.userName = aliasInput.val();
-        if (_this.userName.length > 0) {
+        if (InputValidation.validate(aliasInput)) {
+          _this.userName = aliasInput.val();
           _this.showChatForm();
           chatInput.focus();
           return _this.hideAliasForm();

@@ -15,7 +15,6 @@ class Home
 		@socketSupport.listen("newResearchHappening", @displayCurrentResearch)
 
 	displayCurrentResearch: (data) =>
-		console.log("data recieved = ", data)
 		areas = []
 		for key, val of data
 			areas.push({name: key, number: val})
