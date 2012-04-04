@@ -110,14 +110,23 @@
   })();
 
   Chat = (function() {
-    var chatWrapper, onChatPage;
+    var aliasInput, chatInput, chatWrapper, onChatPage;
 
     function Chat() {
+      this.listenForChat = __bind(this.listenForChat, this);
+      this.handleChatEntered = __bind(this.handleChatEntered, this);
+      this.handleUsernameEntered = __bind(this.handleUsernameEntered, this);
       this.listenForOtherUsers = __bind(this.listenForOtherUsers, this);      if (onChatPage) {
+        this.areaName = $("#area-id").text();
         this.socketSupport = new SocketSupport();
         this.numberOfUsers = 1;
         this.showHideChat;
+        this.userName = "";
+        this.disableChatInput();
         this.listenForOtherUsers();
+        this.handleUsernameEntered();
+        this.handleChatEntered();
+        this.listenForChat();
       }
     }
 
@@ -127,6 +136,53 @@
         _this.numberOfUsers = data["coffee"];
         return _this.showHideChat();
       });
+    };
+
+    Chat.prototype.handleUsernameEntered = function() {
+      var _this = this;
+      return $("#chat .alias-form").submit(function(e) {
+        e.preventDefault();
+        _this.userName = $("#chat .alias").val();
+        if (_this.userName.length > 0) {
+          _this.enableChatInput();
+          return console.log("disabling alias input");
+        } else {
+          return _this.disableChatInput();
+        }
+      });
+    };
+
+    Chat.prototype.handleChatEntered = function() {
+      var _this = this;
+      return $("#chat .chat-form").submit(function(e) {
+        var message;
+        e.preventDefault();
+        message = $("#chat .text-input").val();
+        if (message.length > 0) return _this.sendMessage(message);
+      });
+    };
+
+    Chat.prototype.sendMessage = function(message) {
+      var payload;
+      payload = {
+        user: this.userName,
+        message: message,
+        area: this.areaName
+      };
+      return this.socketSupport.sendSocketData('chatMessage', payload);
+    };
+
+    Chat.prototype.listenForChat = function() {
+      var _this = this;
+      return this.socketSupport.listen('recieveChat', function(data) {
+        if (data["area"] === _this.areaName) {
+          return _this.addChatLine(data["user"], data["message"]);
+        }
+      });
+    };
+
+    Chat.prototype.addChatLine = function(name, message) {
+      return $("#chat ul").append("<li><strong>" + name + "</strong>: " + message + "</li>");
     };
 
     Chat.prototype.showHideChat = function() {
@@ -145,12 +201,28 @@
       return chatWrapper.hide();
     };
 
+    Chat.prototype.disableChatInput = function() {
+      return chatInput.attr('disabled', 'disabled');
+    };
+
+    Chat.prototype.enableChatInput = function() {
+      return chatInput.removeAttr('disabled');
+    };
+
     chatWrapper = (function() {
       return $("section#chat");
     })();
 
     onChatPage = (function() {
       return chatWrapper.length > 0;
+    })();
+
+    chatInput = (function() {
+      return $("section#chat .text-input");
+    })();
+
+    aliasInput = (function() {
+      return $("section#chat .alias");
     })();
 
     return Chat;
@@ -167,7 +239,6 @@
 
     function Tagger() {
       this.areaName = $("#area-id").text();
-      console.log("area name = ", this.areaName);
       this.registerTagButtons();
       this.getTaggedDocuments();
       this.socketSupport = new SocketSupport();
@@ -197,7 +268,6 @@
     Tagger.prototype.getTaggedDocuments = function() {
       var url;
       url = "/tag/" + this.areaName;
-      console.log("trying to get from " + url);
       return $.ajax({
         url: url,
         dataType: 'json',

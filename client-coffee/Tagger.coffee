@@ -1,7 +1,6 @@
 class Tagger
 	constructor: ->
 		@areaName = $("#area-id").text()
-		console.log("area name = ", @areaName)
 		@registerTagButtons()
 		@getTaggedDocuments()
 		@socketSupport = new SocketSupport()
@@ -29,7 +28,6 @@ class Tagger
 		
 	getTaggedDocuments: ->
 		url = "/tag/#{@areaName}"
-		console.log("trying to get from #{url}")
 		$.ajax
 			url: url
 			dataType: 'json'

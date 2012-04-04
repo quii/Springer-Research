@@ -27,6 +27,10 @@ class root.SocketHandler
 				)
 			)
 
+			socket.on('chatMessage', (data) =>
+				io.sockets.emit('recieveChat', data)
+			)
+
 			socket.on('whatsBeingResearched', (from, f) =>
 				f(userLib.User.currentResearch(@users))
 			)
