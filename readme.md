@@ -2,7 +2,11 @@
 
 - Home button
 
-- Regex on the inputs
+- Dont hide previous chat transcript when a user leaves
+
+- Validation on the inputs
+
+- Add a "foo has left"
 
 - Show other tags for a given document
 
