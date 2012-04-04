@@ -2,11 +2,11 @@
 
 - Design
 
-- Make the tagging system more robust. Currently you can add the same tag twice, need to group them (or add count?) and then order them by number of hits
+- Host it, Tom is on the case hopefully
 
-- Host it, probably on heroku
-	- Sort out free mongodb hosting. 
-	- https://devcenter.heroku.com/articles/mongohq
+- Show other tags for a given document
+
+- Make the tagging system more robust. Currently you can add the same tag twice, need to group them (or add count?) and then order them by number of hits
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).
 	- Make it so when you press on "Export to Instapaper" that it comes up in a popup and you can deselect content you dont want sent
@@ -21,10 +21,14 @@
 - Make the cake file a little more configurable
 
 # Bugs
-- When a person leaves a research page, a client on the homepage doesn't recieve an update
+- 
 
 # How to start mongo:
 sudo mongod run --config /usr/local/Cellar/mongodb/2.0.3-x86_64/mongod.conf
 
 # Tutorial on using express with mongo
 http://howtonode.org/express-mongodb
+
+
+
+scp -r -i ~/Downloads/aws.pem SpringerResearch ubuntu@ec2-184-73-142-156.compute-1.amazonaws.com:/home/ubuntu/SpringerResearch
