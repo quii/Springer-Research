@@ -67,6 +67,8 @@
         };
         renderedHTML = Mustache.to_html($('#current-research-template').html(), this.currentResearch);
         return $('#current-research-container').html(renderedHTML);
+      } else {
+        return $('#current-research-container').html('');
       }
     };
 
@@ -146,7 +148,7 @@
       var _this = this;
       return $("#chat .alias-form").submit(function(e) {
         e.preventDefault();
-        _this.userName = $("#chat .alias").val();
+        _this.userName = aliasInput.val();
         if (_this.userName.length > 0) {
           _this.showChatForm();
           chatInput.focus();
@@ -160,9 +162,9 @@
       return $("#chat .chat-form").submit(function(e) {
         var message;
         e.preventDefault();
-        message = $("#chat .text-input").val();
-        if (message.length > 0) _this.sendMessage(message);
-        return $("#chat .text-input").val("");
+        message = chatInput.val();
+        chatInput.val("");
+        if (message.length > 0) return _this.sendMessage(message);
       });
     };
 
@@ -226,7 +228,7 @@
     })();
 
     chatInput = (function() {
-      return $("section#chat .text-input");
+      return $("#chat .text-input");
     })();
 
     chatForm = (function() {
@@ -234,7 +236,7 @@
     })();
 
     aliasInput = (function() {
-      return $("section#chat .alias");
+      return $("#chat .alias");
     })();
 
     numberOfUsersSpan = (function() {

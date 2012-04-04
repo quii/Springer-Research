@@ -24,7 +24,7 @@ class Chat
 	handleUsernameEntered: =>
 		$("#chat .alias-form").submit (e) =>
 			e.preventDefault() 
-			@userName = $("#chat .alias").val()
+			@userName = aliasInput.val()
 			if @userName.length>0
 				@showChatForm() 
 				chatInput.focus()
@@ -33,9 +33,9 @@ class Chat
 	handleChatEntered: =>
 		$("#chat .chat-form").submit (e) =>
 			e.preventDefault()
-			message = $("#chat .text-input").val()
+			message = chatInput.val()
+			chatInput.val("")
 			if message.length>0 then @sendMessage(message)
-			$("#chat .text-input").val("")
 
 	sendMessage: (message) ->
 		payload = 
@@ -64,9 +64,9 @@ class Chat
 
 	chatWrapper = do -> $("section#chat")
 	onChatPage = do -> chatWrapper.length>0
-	chatInput = do -> $("section#chat .text-input")
+	chatInput = do -> $("#chat .text-input")
 	chatForm = do -> $("#chat .chat-form")
-	aliasInput = do -> $("section#chat .alias")
+	aliasInput = do -> $("#chat .alias")
 	numberOfUsersSpan = do -> $("#chat .number-of-users")
 	areaSpan = do -> $("#chat .chat-area")
 

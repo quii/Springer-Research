@@ -25,7 +25,9 @@ class Home
 				results: areas
 
 			renderedHTML = Mustache.to_html($('#current-research-template').html(), @currentResearch)
-			$('#current-research-container').html(renderedHTML) 
+			$('#current-research-container').html(renderedHTML)
+		else
+			$('#current-research-container').html('') 
 
 $ ->
 	if($("#isHome").length>0)
