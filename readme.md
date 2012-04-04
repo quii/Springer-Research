@@ -8,6 +8,7 @@
 
 - Host it, probably on heroku
 	- Sort out free mongodb hosting. 
+	- https://devcenter.heroku.com/articles/mongohq
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).
 	- Make it so when you press on "Export to Instapaper" that it comes up in a popup and you can deselect content you dont want sent
@@ -19,8 +20,10 @@
 # Refactoring required
 - DRY the server's socket handler
 - All the routes are in one file called index.coffee, which is stupid and misleading
+- Make the cake file a little more configurable
 
 # Bugs
+- Count of people researching is wrong
 - Adding tags is still sometimes dodgy, seems to be using a previous area name sometimes, or something
 
 # How to start mongo:

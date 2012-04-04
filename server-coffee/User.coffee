@@ -23,5 +23,8 @@ class root.User
   	@currentResearch = (users) ->
   		currentAreas = {}
   		for u in users when u.location!='home'
-  			currentAreas[u.location] = 1
+        if(currentAreas[u.location]?)
+          currentAreas[u.location]++
+        else
+          currentAreas[u.location] = 1
   		currentAreas
