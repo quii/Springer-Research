@@ -61,11 +61,13 @@
           number: val
         });
       }
-      this.currentResearch = {
-        results: areas
-      };
-      renderedHTML = Mustache.to_html($('#current-research-template').html(), this.currentResearch);
-      return $('#current-research-container').html(renderedHTML);
+      if (areas.length > 0) {
+        this.currentResearch = {
+          results: areas
+        };
+        renderedHTML = Mustache.to_html($('#current-research-template').html(), this.currentResearch);
+        return $('#current-research-container').html(renderedHTML);
+      }
     };
 
     return Home;

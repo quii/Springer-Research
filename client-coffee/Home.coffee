@@ -20,11 +20,12 @@ class Home
 		for key, val of data
 			areas.push({name: key, number: val})
 
-		@currentResearch =
-			results: areas
+		if areas.length>0
+			@currentResearch =
+				results: areas
 
-		renderedHTML = Mustache.to_html($('#current-research-template').html(), @currentResearch)
-		$('#current-research-container').html(renderedHTML) 
+			renderedHTML = Mustache.to_html($('#current-research-template').html(), @currentResearch)
+			$('#current-research-container').html(renderedHTML) 
 
 $ ->
 	if($("#isHome").length>0)
