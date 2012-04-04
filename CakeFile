@@ -5,6 +5,7 @@ appFiles  = [
   'client-coffee/SocketSupport.coffee'
   'client-coffee/Home.coffee'
   'client-coffee/ResultsCache.coffee'
+  'client-coffee/Chat.coffee'
   'client-coffee/Tagger.coffee'
   'client-coffee/SpringerSearch.coffee'
 ]

@@ -1,5 +1,5 @@
 (function() {
-  var Home, SearchResultCache, SocketSupport, SpringerLite, Tagger,
+  var Chat, Home, SearchResultCache, SocketSupport, SpringerLite, Tagger,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   SocketSupport = (function() {
@@ -109,6 +109,59 @@
 
   })();
 
+  Chat = (function() {
+    var chatWrapper, onChatPage;
+
+    function Chat() {
+      this.listenForOtherUsers = __bind(this.listenForOtherUsers, this);      if (onChatPage) {
+        this.socketSupport = new SocketSupport();
+        this.numberOfUsers = 1;
+        this.showHideChat;
+        this.listenForOtherUsers();
+      }
+    }
+
+    Chat.prototype.listenForOtherUsers = function() {
+      var _this = this;
+      return this.socketSupport.listen("newResearchHappening", function(data) {
+        _this.numberOfUsers = data["coffee"];
+        return _this.showHideChat();
+      });
+    };
+
+    Chat.prototype.showHideChat = function() {
+      if (this.numberOfUsers > 1) {
+        return this.displayChat();
+      } else {
+        return this.hideChat();
+      }
+    };
+
+    Chat.prototype.displayChat = function() {
+      return chatWrapper.show();
+    };
+
+    Chat.prototype.hideChat = function() {
+      return chatWrapper.hide();
+    };
+
+    chatWrapper = (function() {
+      return $("section#chat");
+    })();
+
+    onChatPage = (function() {
+      return chatWrapper.length > 0;
+    })();
+
+    return Chat;
+
+  })();
+
+  $(function() {
+    var chat;
+    return chat = new Chat();
+  });
+
   Tagger = (function() {
     var renderTaggedDocuments;
 
@@ -132,7 +185,6 @@
           area: $(event.currentTarget).attr('area')
         };
         _this.socketSupport.sendSocketData('addTaggedDocument', tagData);
-        console.log("posting tag data: " + tagData);
         $.ajax({
           type: 'POST',
           data: tagData,

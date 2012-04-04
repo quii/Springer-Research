@@ -18,8 +18,6 @@ class Tagger
 				area: $(event.currentTarget).attr 'area'
 
 			@socketSupport.sendSocketData('addTaggedDocument', tagData)
-
-			console.log("posting tag data: #{tagData}")
 			
 			$.ajax
 				type: 'POST'
