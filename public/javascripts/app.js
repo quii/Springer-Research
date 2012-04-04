@@ -145,7 +145,9 @@
         _this.userName = $("#chat .alias").val();
         if (_this.userName.length > 0) {
           _this.enableChatInput();
-          return console.log("disabling alias input");
+          chatInput.focus();
+          _this.hideAliasForm();
+          return console.log("hiding form");
         } else {
           return _this.disableChatInput();
         }
@@ -158,7 +160,8 @@
         var message;
         e.preventDefault();
         message = $("#chat .text-input").val();
-        if (message.length > 0) return _this.sendMessage(message);
+        if (message.length > 0) _this.sendMessage(message);
+        return $("#chat .text-input").val("");
       });
     };
 
@@ -207,6 +210,10 @@
 
     Chat.prototype.enableChatInput = function() {
       return chatInput.removeAttr('disabled');
+    };
+
+    Chat.prototype.hideAliasForm = function() {
+      return $("#chat .alias-form").hide();
     };
 
     chatWrapper = (function() {

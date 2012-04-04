@@ -25,7 +25,9 @@ class Chat
 			@userName = $("#chat .alias").val()
 			if @userName.length>0
 				@enableChatInput() 
-				console.log("disabling alias input")
+				chatInput.focus()
+				@hideAliasForm()
+				console.log("hiding form")
 			else 
 				@disableChatInput()
 
@@ -34,6 +36,7 @@ class Chat
 			e.preventDefault()
 			message = $("#chat .text-input").val()
 			if message.length>0 then @sendMessage(message)
+			$("#chat .text-input").val("")
 
 	sendMessage: (message) ->
 		payload = 
@@ -57,6 +60,7 @@ class Chat
 	hideChat: -> chatWrapper.hide()
 	disableChatInput: -> chatInput.attr('disabled', 'disabled')
 	enableChatInput: -> chatInput.removeAttr('disabled');
+	hideAliasForm: -> $("#chat .alias-form").hide()
 
 	chatWrapper = do -> $("section#chat")
 	onChatPage = do -> chatWrapper.length>0
