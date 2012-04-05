@@ -1693,11 +1693,10 @@ a.industry-tab {
 ------------------------------------------------------------------------------*/
 /* layout */
 .document-main {
-	margin: 13px 0;
 }
 /* h2 */
 .document-main .col-main h2 {
-	margin-top: 20px;
+	margin: 10px 0px 20px 0;
 }
 .document-main .col-main h2 span {
 	color: #999;

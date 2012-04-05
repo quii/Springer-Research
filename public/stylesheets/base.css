@@ -628,9 +628,9 @@ h1,h2 {
 }
 /* layout 3 (8/4, e.g. abstract) */
 .layout-3 .col-main {
-	margin-left: 42px;	
+	margin-left: 20px;	
 	position: relative;
-	width: 584px;
+	width: 534px;
 }
 .layout-3 .has-enumeration {
     padding-top: 16px;
@@ -639,8 +639,9 @@ h1,h2 {
     padding-top: 33px;
 }
 .layout-3 .col-aside {
-	margin-left: 42px;
-	width: 236px;
+	margin-top:10px;
+	margin-left: 40px;
+	width: 330px;
 }
 /* layout 4 (~7, e.g. info) */
 .layout-4 {
@@ -698,7 +699,7 @@ header ol li {
 }
 #results li a:first-child {
 		display: inline-block;
-		width: 510px;
+		width: 490px;
 }
 #results li a.tag {
 		float: right;		
@@ -1534,7 +1535,7 @@ img.loading{
 }
 
 ol.home{
-	margin:0 0 2em 0;
+	margin:1em 0 2em 0;
 	padding:0em 2em 0 2em;
 }
 
@@ -1570,12 +1571,20 @@ form.home{
 	margin-right:10px;
 }
 
+#search-form{
+	margin:1.9em 0 2em 0;
+	width:504px;
+}
 
 ol.home li{
-	font-size:1.4em;
+	font-size:1.5em;
 	padding:0.5em;
 /*	text-indent:27px;
 	background-position:0px 5px;*/
+}
+
+.col-main p{
+	margin:10px 0;
 }
 
 /*
