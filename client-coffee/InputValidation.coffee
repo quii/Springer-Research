@@ -1,24 +1,10 @@
-class InputValidation
-	@validate = (el) ->
-		
-		#el.val(@replaceHTML(el.val()))
+alphanumericRegex = "/[^a-zA-Z\d ]/g"
 
-		#str = el.val().trim()
+regexFunction = (value, element, regexp) ->
+	re = new RegExp(regexp)
+	return re.test(value)
 
-		#@noFunnyChars(str)
 
-		#if @isEmptyString(str) then return false
+$.validator.addMethod("regex", regexFunction, "Please check your input")
 
-		return true
-
-	@replaceHTML = (str) ->
-		str.replace /[&<>"']/g, ($0) ->
-    		"&" + {"&":"amp", "<":"lt", ">":"gt", '"':"quot", "'":"#39"}[$0] + ";"
-
-    @noFunnyChars = (str) ->
-    	pattern = /^([a-zA-Z0-9,-]|\s)*$/
-    	console.log pattern.test(str)
-
-	@isEmptyString = (s) ->
-	  return true if s instanceof String and s.length == 0
-	  s == ''
+validateAlphanumeric = (el) -> el.rules("add", regex: alphanumericRegex)

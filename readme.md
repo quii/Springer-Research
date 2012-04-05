@@ -1,16 +1,17 @@
 # Features to do (prioritized)
 
-- Home button
-
 - Dont hide previous chat transcript when a user leaves
+
+- Stop duplicate tags
 
 - Validation on the inputs
 
 - Add a "foo has left"
 
+- Add tag count
+
 - Show other tags for a given document
 
-- Make the tagging system more robust. Currently you can add the same tag twice, need to group them (or add count?) and then order them by number of hits
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).
 	- Make it so when you press on "Export to Instapaper" that it comes up in a popup and you can deselect content you dont want sent

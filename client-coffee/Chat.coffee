@@ -24,7 +24,8 @@ class Chat
 	handleUsernameEntered: =>
 		$("#chat .alias-form").submit (e) =>
 			e.preventDefault() 
-			if(InputValidation.validate(aliasInput))
+			# if(InputValidation.validate(aliasInput))
+			if(aliasInput.val().length>0)
 				@userName = aliasInput.val()
 				@showChatForm() 
 				chatInput.focus()

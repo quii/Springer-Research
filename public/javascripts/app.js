@@ -1,40 +1,22 @@
 (function() {
-  var Chat, Home, InputValidation, SearchResultCache, SocketSupport, SpringerLite, Tagger,
+  var Chat, Home, SearchResultCache, SocketSupport, SpringerLite, Tagger, alphanumericRegex, regexFunction, validateAlphanumeric,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  InputValidation = (function() {
+  alphanumericRegex = "/[^a-zA-Z\d ]/g";
 
-    function InputValidation() {}
+  regexFunction = function(value, element, regexp) {
+    var re;
+    re = new RegExp(regexp);
+    return re.test(value);
+  };
 
-    InputValidation.validate = function(el) {
-      return true;
-    };
+  $.validator.addMethod("regex", regexFunction, "Please check your input");
 
-    InputValidation.replaceHTML = function(str) {
-      str.replace(/[&<>"']/g, function($0) {
-        return "&" + {
-          "&": "amp",
-          "<": "lt",
-          ">": "gt",
-          '"': "quot",
-          "'": "#39"
-        }[$0] + ";";
-      });
-      return this.noFunnyChars = function(str) {
-        var pattern;
-        pattern = /^([a-zA-Z0-9,-]|\s)*$/;
-        return console.log(pattern.test(str));
-      };
-    };
-
-    InputValidation.isEmptyString = function(s) {
-      if (s instanceof String && s.length === 0) return true;
-      return s === '';
-    };
-
-    return InputValidation;
-
-  })();
+  validateAlphanumeric = function(el) {
+    return el.rules("add", {
+      regex: alphanumericRegex
+    });
+  };
 
   SocketSupport = (function() {
 
@@ -181,7 +163,7 @@
       var _this = this;
       return $("#chat .alias-form").submit(function(e) {
         e.preventDefault();
-        if (InputValidation.validate(aliasInput)) {
+        if (aliasInput.val().length > 0) {
           _this.userName = aliasInput.val();
           _this.showChatForm();
           chatInput.focus();

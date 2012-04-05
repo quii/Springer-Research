@@ -1,7 +1,7 @@
 h1 What do you want to research?
 
 form(method="post", action="/")
-  input(type="text", name="research[area]")
+  input#research-area-input(type="text", name="research[area]")
   input(type="submit", value="Go")
 
 div#isHome(style="display:none;")

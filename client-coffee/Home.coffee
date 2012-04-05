@@ -6,6 +6,8 @@ class Home
 		@listenForNewAreasBeingResearched()
 		@tellServerImHome()
 
+		# validateAlphanumeric("#research-area-input")
+
 	askForRealtimeInfo: ->
 		@socketSupport.sendRecieveData("whatsBeingResearched", {}, @displayCurrentResearch)
 
