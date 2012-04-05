@@ -1,0 +1,1112 @@
+/**
+ * PAGES
+ * page specific styles
+ */
+
+@media screen, projection, handheld {
+
+/* Results page: toggle 'see all' results
+------------------------------------------------------------------------------*/
+#results-only-access {
+	background: #FFF9E0;
+	border: 1px solid #FDEA9D;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	margin-bottom: 12px;
+	padding: 7px 25px 7px 37px;
+	position: relative;
+}
+#results-only-access img {
+	position: absolute; left: 7px; top: 7px;
+	vertical-align: top;
+}
+#results-only-access label {
+	font-weight: bold;
+	line-height: 1.6;
+	position: relative;
+}
+#results-only-access div {
+	position: absolute; right: 7px; top: 7px;
+}
+/* non-js version */
+.results-only-access-toggle img {
+	vertical-align: bottom;
+}
+.js .results-only-access-toggle {
+	display: none;
+}
+.no-js #results-only-access {
+	padding-right: 0;
+}
+.no-js #results-only-access div {
+	margin-top: 2px;
+	position: static;
+}
+.no-js #results-only-access-checkbox {
+	display: none;
+}
+
+/* Results page: headline "Refine your search"
+------------------------------------------------------------------------------*/
+#results .col-aside h2 {
+	font: bold 13px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	letter-spacing: 0;
+}
+
+/* Results page: facet links in .col-main for removing
+------------------------------------------------------------------------------*/
+#results .col-main .facet-link {
+	background: url(../images/remove_icons.png) no-repeat right 1px;
+	color: #EE7D11;
+	font-size: 14px;
+	margin-right: 15px;
+	padding-right: 19px;
+	position: relative;
+}
+#results .col-main .facet-link span {
+	color: #333;
+}
+#results .col-main .facet-link:hover {
+	background-position: right -49px;
+	color: #B84C04;
+	text-decoration: none;
+}
+#results .col-main .facet-link:active {
+	background-position: right -74px;
+}
+
+/* Results page: date facet
+------------------------------------------------------------------------------*/
+/* positioning of the expander title (css is seperate because it's quite tricky) */
+#date-facet {
+	margin-top: -36px; /* move whole facet up */
+	text-align: center; /* center everything inside facet */
+}
+#date-facet .expander-title {
+	display: inline-block; /* to make text-align center work */
+	position: relative; z-index: 2; /* move to the foreground of the functions bar */
+}
+#date-facet .expander-content {
+	text-align: left; /* push content back to the left */
+}
+.ie7 #date-facet {
+	margin-top: -12px;
+	z-index: 2;
+}
+.ie7 #date-facet .expander-title {
+	display: inline; /* hack for inline-block */
+	margin-top: -36px;
+	zoom: 1; /* hack for inline-block */
+}
+.ie6 #date-facet .expander-title {
+	width: 200px; /* because inline-block hack doesn't work */
+}
+.no-js #date-facet {
+	margin-top: 0;
+	text-align: left;
+}
+.no-js #date-facet .expander-title {
+	border-bottom: 0;
+	display: block;
+}
+.no-js #date-facet .expander-content-inner {
+	padding-top: 0;
+}
+/* style of the expander title */
+#date-facet .expander-title {
+	background: transparent;
+	border: 1px solid #DBDADA;
+	font-size: 12px;
+	height: 34px;
+	z-index: 11;
+}
+.js #date-facet .expander-title:hover {
+	border-left-color: #CCC;
+	border-right-color: #CCC;
+}
+#date-facet .expander-title div {
+	background-position: 14px -40px;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	color: #0176C3;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 14px 0 33px;
+}
+.no-js #date-facet .expander-title div {
+	padding-left: 10px;
+}
+#date-facet.expander-open .expander-title {
+	border-bottom-color: #FFF;
+}
+#date-facet.expander-open .expander-title div {
+	background-position: 11px 14px;
+}
+/* content */
+#date-facet .expander-content {
+	border: 1px solid #DBDADA;
+	border-top: 0;
+}
+.js #date-facet .expander-content {
+	display: none;
+}
+.js #date-facet .expander-content {
+	display: block;
+}
+#date-facet .expander-content-inner {
+	padding: 15px 10px 10px;
+	position: relative;
+}
+#date-facet label {
+	float: left;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1.2;
+	margin: 4px 9px 0 0;
+}
+#date-facet label span {
+	font-size: 11px;
+	font-weight: normal;
+}
+#date-facet-fields {
+	float: left;
+}
+#date-facet-mode {
+	font-size: 11px;
+	margin-right: 3px;
+	width: 80px;
+}
+#date-facet input[type=text] {
+	font-size: 11px;
+	margin: 0 5px;
+	padding: 4px 3px;
+	text-align: center;
+	width: 60px;
+}
+#date-facet-fields span {
+	font-size: 11px;
+	line-height: 24px;
+}
+#date-facet-fields .error-message span {
+	line-height: 1;
+}
+#date-facet .search-submit {
+	background: url(../images/sprite.png) no-repeat -180px 0;
+	border: 0;
+	float: left;
+	height: 24px;
+	margin-left: 5px;
+	width: 24px;
+}
+#date-facet .search-submit:hover {
+	background-position: -180px -30px;
+}
+#date-facet .search-submit:active {
+	background-position: -180px -60px;
+}
+#date-facet-remove {
+	float: left;
+	line-height: 26px;
+	margin-left: 20px;
+}
+
+/* Results page: error message
+------------------------------------------------------------------------------*/
+#results .col-main > .error-message {
+	margin-bottom: 16px;
+}
+
+/* Results page: results content header
+------------------------------------------------------------------------------*/
+#results .col-main .header h1 {
+	font: 16px/1.2 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	margin: 0;
+}
+#results .col-main .header h1 strong:first-child {
+	font-size: 18px;
+}
+#results .col-main .header h1 em {
+    background: #E6F3FC;
+    font-style: normal;
+}
+#results .col-main .header p {
+	font-size: 14px;
+	line-height: 1.3;
+	margin-top: 3px;
+}
+
+/* Results page: only searching within
+------------------------------------------------------------------------------*/
+#only-searching-within .cover {
+	border: 1px solid #9C9C9C;
+	-webkit-box-shadow: 3px 3px 0 rgba(0, 0, 0, .2);
+	   -moz-box-shadow: 3px 3px 0 rgba(0, 0, 0, .2);
+	        box-shadow: 3px 3px 0 rgba(0, 0, 0, .2);
+	float: left;
+	width: 65px;
+}
+#only-searching-within .text {
+	margin-left: 12px;
+	float:left;
+}
+#only-searching-within .title {
+	font-weight: bold;
+	line-height: 1.325;
+	margin: 6px 0;
+}
+#only-searching-within .range {
+	font-size: 13px;
+	margin: 6px 0 7px;
+}
+
+/* Results page: search results teaser
+------------------------------------------------------------------------------*/
+#results-teaser {
+	background: #FFF9E0 url(../images/lock_bigger.png) no-repeat 7px 6px;
+	border: 1px solid #FDEA9D;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	margin: 6px 0 5px;
+	padding: 6px 55px 6px 45px;
+}
+#results-teaser .meta {
+	margin: 7px 0;
+	position: relative;
+}
+#results-teaser .meta strong {
+	font-size: 15px;
+}
+#results-teaser h2 {
+	font: 16px/1.375 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	margin-top: 0;
+}
+#results-teaser-all {
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+#results-teaser + #results-list {
+	border-top: 1px solid #DBDADA;
+}
+
+/* Results page: results list (basic styling from .content-item-list)
+------------------------------------------------------------------------------*/
+#results-list {
+	margin-top: 5px;
+}
+#results-list li {
+	padding-right: 50px;
+}
+/* highlight search terms */
+#results-list h2 em {
+	background-color: #E6F3FC;
+	font-style: normal;
+}
+#results-list h2 a:hover em {
+	text-decoration: underline;
+}
+#results-list .snippet em,
+#results-list .subtitle em,
+#results-list .coverage em {
+	background-color: #E6F3FC;
+	font-style: normal;
+	font-weight: bold;
+}
+/* enumeration */
+#results-list .enumeration {
+	font-style: italic;
+}
+/* actions */
+#results-list span.action {
+	display: inline-block;
+	min-width: 150px;
+}
+/* covers on the right instead of left */
+#results-list li.has-cover {
+	padding-right: 13px;
+}
+#results-list li.has-cover .text {
+	margin-left: 0;
+	margin-right: 93px;
+}
+#results-list li.has-cover .cover {
+	float: right;
+}
+#results-list .no-access-message {
+	margin-right: -50px;
+}
+#results-list li.has-cover .no-access-message {
+	margin-right: -13px;
+}
+
+/* Results page: no results
+------------------------------------------------------------------------------*/
+/* message */
+#no-results-message {
+	margin: 16px 0 14px;
+}
+#no-results-message h2 {
+	font: 19px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#no-results-message li {
+	margin-top: 0;
+}
+/* remove box */
+#no-results-remove {
+	padding: 11px 13px 23px 45px;
+}
+#no-results-remove:before { /* icon */
+	background: url(../images/no_results_remove.png) no-repeat;
+	content: '';
+	display: block;
+	height: 27px;
+	position: absolute; left: 7px; top: 6px;
+	width: 27px;
+}
+#no-results-remove p {
+	margin: 0 300px 12px 0;
+}
+#no-results-remove li {
+	margin-top: 8px;
+}
+#no-results-remove .facet-link {
+	font-size: 16px;
+}
+
+/* Industry sector page intro
+------------------------------------------------------------------------------*/
+#industry-sector #intro h1 {
+	font-size: 24px;
+}
+
+/* Book Series page
+------------------------------------------------------------------------------*/
+/* browse */
+#book-series .browse input.text {
+	width: 136px;
+}
+
+/* 'Journal All Volumes & Issues' Page
+------------------------------------------------------------------------------*/
+#journal-volumes-issues .col-main .expander {
+	margin-left: -42px; /* reset padding */
+	margin-right: 15px;
+}
+#journal-volumes-issues .col-main .meta+.expander {
+	margin-top: 30px;
+}
+#journal-volumes-issues .col-main .expander-title div {
+	padding-left: 42px;
+}
+.issues-list {
+	margin-left: 25px;
+	margin-right: 15px;
+}
+.issues-list li {
+	border-top: 1px solid #DBDADA;
+	list-style: none;
+	margin: 0;
+	padding: 10px 120px 12px 0;
+	position: relative;
+}
+.issues-list li:first-child {
+	border-top: 0;
+}
+
+/* Home page: Introduction (also see modules.css)
+------------------------------------------------------------------------------*/
+#home #intro h2 {
+	color: #666;
+	font: 29px/1.08 Georgia, "New Century Schoolbook", "Nimbus Roman No9 L", serif;
+	letter-spacing: .02em;
+	margin: 0;
+}
+
+/* Home page: Newest Book and Journal
+------------------------------------------------------------------------------*/
+#newest {
+	margin: 0 27px 20px 8px;
+	min-height: 160px;
+	position: relative;
+	zoom: 1;
+}
+#newest a {
+	background: url(../images/newest_arrow.png) no-repeat -99px bottom; /* preloading to prevent flickering on :hover */
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+	        border-radius: 2px;
+	display: inline-block;
+	margin-right: 4px;
+	padding: 3px 3px 20px;
+}
+#newest img {
+	-webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	   -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	        box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	border: 1px solid #DBDADA;
+	vertical-align: bottom;
+	width: 120px;
+}
+#newest .textbox {
+	background-color: #EE7D11;
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+	        border-radius: 2px;
+	color: #FFF;
+	display: block;
+	font: 21px/1.1 Georgia, "New Century Schoolbook", "Nimbus Roman No9 L", serif;
+	padding: 15px 61px 15px 15px;
+	position: absolute; right: 0; bottom: 20px; z-index: 1;
+	width: 240px;
+	word-wrap: break-word;
+}
+#newest .textbox .title {
+	color: #F9DECC;
+}
+#newest .textbox .date {
+	font: 12px/1 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#newest a .textbox {
+	display: none;
+	z-index: 2;
+}
+#newest a:hover {
+	background-color: #F9DECC;
+	background-position: right bottom;
+	text-decoration: none;
+}
+#newest a:hover img {
+	border-color: #F5AF7F;
+}
+#newest a:hover .textbox {
+	display: block;
+}
+/* recognised as company */
+body.company #newest .textbox {
+	background-color: #A82764;
+}
+body.company #newest .textbox .title {
+	color: #EED4E0;
+}
+body.company #newest a:hover {
+	background-color: #EED4E0;
+}
+body.company #newest a:hover img {
+	border-color: #C685A4;
+}
+
+/* Home page: company infoboard
+------------------------------------------------------------------------------*/
+#company-infoboard h2 span,
+#company-infoboard .teaser h3,
+#company-infoboard .teaser .stats,
+#company-infoboard .teaser .being-read-time {
+	color: #EE7D11;
+}
+#company-infoboard .teaser {
+	border-color: #EE7D11;
+}
+#company-infoboard .teaser ul {
+	margin-top: -5px;
+}
+#company-infoboard .teaser li {
+	margin-top: 17px;
+	position: relative;
+	zoom: 1;
+}
+#company-infoboard .teaser .being-read-time {
+	font-size: 12px;
+	position: absolute; right: 0; top: 0;
+}
+/* recognised as company */
+body.company #company-infoboard h2 span,
+body.company #company-infoboard .teaser h3,
+body.company #company-infoboard .teaser .stats,
+body.company #company-infoboard .teaser .being-read-time {
+	color: #A82764;
+}
+body.company #company-infoboard .teaser {
+	border-color: #A82764;
+}
+
+/* Home page: personal infoboard
+------------------------------------------------------------------------------*/
+#personal-infoboard h2 span,
+#personal-infoboard li {
+	color: #7E7D01;
+}
+#personal-infoboard .teaser {
+	border-color: #7E7D01;
+}
+#personal-infoboard p a:before {
+	white-space: nowrap;
+}
+#personal-infoboard ul {
+	margin: 8px 0;
+}
+#personal-infoboard li {
+	font-size: 16px;
+	line-height: 26px;
+	margin-top: 5px;
+}
+#personal-infoboard .li1,
+#personal-infoboard .li2,
+#personal-infoboard .li3 {
+	background: url(../images/personal_infoboard_icons.png) no-repeat;
+	padding-left: 34px;
+}
+#personal-infoboard .li2 {
+	background-position: 0 -40px;
+}
+#personal-infoboard .li3 {
+	background-position: 0 -80px;
+}
+
+/* Login or Register page
+------------------------------------------------------------------------------*/
+/* shared */
+#login #logo,
+#login-register #logo {
+	position: absolute; left: 43px; top: 21px;
+}
+#login .success-header,
+#login-register .success-header {
+	background: url(../images/success_icon.png) no-repeat;
+	margin-left: -27px;
+	padding-left: 26px;
+}
+/* text */
+#login h1,
+#login h2 {
+	font: 16px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#login-register h2 {
+    font-size: 20px;
+}
+#login h2,
+#login h3,
+#login-register h2,
+#login-register h3 {
+	margin: 16px 0;
+}
+#login h3
+#login-register h3 {
+	font-size: 13px;
+}
+#login p + h3,
+#login-register p + h3 {
+	margin-top: 24px;
+}
+#login p,
+#login-register p {
+	color: #666;
+	line-height: 1.6;
+	margin-bottom: 15px;
+}
+#login form + p,
+#login-register form + p {
+	color: #999;
+	margin: 15px 0 0 0;
+}
+.helperText {
+    color: #666;
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    margin:  4px 0 0 0;
+}
+/* login */
+.login{
+    width: 650px;
+}
+#login {
+	background-color: #FFF;
+	border: 1px solid #DCDADA;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	-webkit-box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	   -moz-box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	        box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	margin: 30px auto;
+	padding: 30px 225px 30px 350px;
+	position: relative;
+	width: 383px;
+}
+#login form,
+.login form {
+	width: 250px;
+}
+#login .forgot-pword {
+	margin: 0 0 0 26px;
+}
+.ie7 #login .forgot-pword {
+	margin: 0 0 0 21px;
+}
+/* form */
+#login label {
+    clear: both;
+    display: inline-block;
+    margin: 20px 0 5px 0;
+}
+#login input[type=text],
+#login input[type=password] {
+	display: block;
+	margin-bottom: 20px;
+	width: 242px;
+}
+#login .success-message,
+#login .error-message {
+    margin-bottom: 20px;
+}
+/* login box */
+#login-box {
+	margin-top: 48px;
+	position: relative; z-index: 1;
+}
+#login-box h1,
+#login-box h2 {
+	margin-top: 0;
+}
+#login-box a {
+	font-size: 12px;
+	font-style: italic;
+}
+.js #login-box label.error {
+    padding: 0 0 0 13px;
+}
+.js #login-box label.tick {
+    padding: 0;
+}
+#login-box .remember label {
+	display: inline;
+	font-size: 11px;
+	font-weight: normal;
+}
+#login-box .form-submit span {
+	line-height: 31px;
+}
+/* register reasons */
+#register-reasons {
+	border-bottom: 1px solid #DBDADA;
+	margin-top: 25px;
+}
+#register-reasons p {
+	font-size: 16px;
+	margin-left: 4px;
+}
+
+/* Information page (e.g. Legal Information)
+------------------------------------------------------------------------------*/
+#information h2 {
+	margin-top: 44px;
+	padding-left: 0;
+}
+#information h3 {
+    margin: 24px 0 -10px 0;
+}
+#information p {
+	line-height: 1.6;
+	margin-top: 23px;
+}
+#information h2 + p {
+	margin-top: 19px;
+}
+#information ul {
+	margin-top: 23px;
+}
+#information li {
+	margin-top: 7px;
+}
+#information .action a {
+	font-weight: normal;
+}
+
+/* Error page
+------------------------------------------------------------------------------*/
+#error {
+	background: url(../images/springer_horse_big.png) no-repeat 685px 51px;
+	min-height: 250px;
+	padding: 10px 361px 54px 49px;
+}
+#error h1 {
+	margin-bottom: 29px;
+}
+#error p {
+	font-size: 16px;
+	line-height: 1.375;
+	margin-top: 23px;
+}
+
+/* Dashboard
+------------------------------------------------------------------------------*/
+#dashboard {
+	background-color: #FFF;
+	border: 1px solid #DCDADA;
+	-webkit-border-radius: 3px;
+	   -moz-border-radius: 3px;
+	        border-radius: 3px;
+	-webkit-box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	   -moz-box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	        box-shadow: 0 5px 13px rgba(0, 0, 0, .1);
+	margin: 38px auto 0;
+	width: 958px;
+}
+/* header */
+#dashboard #header {
+	border-bottom: 1px solid #DCDADA;
+	-webkit-border-radius: 3px 3px 0 0;
+	   -moz-border-radius: 3px 3px 0 0;
+	        border-radius: 3px 3px 0 0;
+	height: auto;
+	padding: 8px 43px 26px;
+	position: relative;
+	zoom: 1;
+}
+#dashboard #logo {
+	position: relative; top: 8px; left: auto; /* reset */
+}
+#dashboard #header h1 {
+	display: inline;
+	font: 16px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	margin: 0 40px 0 26px;
+}
+#dashboard #logo-company {
+	position: relative; top: auto; bottom: auto; left: 20px; /* reset */
+	vertical-align: text-bottom;
+}
+#dashboard #user {
+	position: absolute; right: 43px; top: 24px;
+}
+#dashboard #logout {
+	font-size: 11px;
+	position: absolute; right: 43px; bottom: 20px;
+}
+/* content */
+#dashboard #content {
+	padding: 14px 47px 47px 47px;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+	        box-shadow: none;
+}
+#dashboard-area {
+    padding: 0 40px 0 40px;
+}
+.intro-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-top: 14px;
+}
+.reports-feat-list {
+    margin: 22px 0 0 0;
+}
+.reports-feat-list:after {
+	clear: both;
+}
+.reports-feat-list > li {
+	float: left;
+	margin-left: 62px;
+	width: 169px;
+	height: 221px;
+}
+.reports-feat-list li:first-child {
+	margin-left: 0;
+}
+.reports-feat-list li.disabled {
+	color: #666;
+	opacity: 0.6;
+}
+.reports-feat-list li > div {
+	background: url(../images/report_cover.png) no-repeat;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+	   -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+	        box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	    -ms-box-sizing: border-box;
+	        box-sizing: border-box;
+	height: 208px;
+	padding: 12px 16px 16px 14px;
+	width: 159px;
+	position: relative;
+}
+.ie6 .reports-feat-list li div {
+	background: url(../images/report_cover.png) no-repeat;
+	height: 208px;
+	padding: 12px 16px 16px 14px;
+	width: 130px;
+	position: relative;
+}
+.ie6 .reports-feat-list li div div {
+    background: #38A0E5;
+    height: 21px;
+    padding: 1px 10px 0 10px;
+    position: absolute; bottom: 40px;
+    width: 100px;
+}
+.ie6 .reports-feat-list li {
+	float: left;
+	margin-left: 20px;
+	width: 169px;
+	height: 221px;
+}
+.ie6 .reports-feat-list li ul li {
+    float: none;
+    margin-left: 0;
+    width: auto;
+    height: auto;
+}
+.ie7 .reports-feat-list li > div{
+	width: 135px;
+	height: 185px;
+}
+.reports-feat-list h3 {
+	font-size: 24px;
+	line-height: 24px;
+	margin: 0;
+	text-align: right;
+}
+.reports-feat-list h4 {
+	font-weight: bold;
+	margin-top: 40px;
+}
+.reports-feat-list p {
+	margin-top: 14px;
+}
+.reports-feat-list .btn {
+	margin-top: 14px;
+	position: absolute;
+	bottom: 20px;
+	left: 14px;
+}
+#dashboard .report-download-list,
+#dashboard-area .report-download-list{
+    margin: 15px 0;
+    display: inline-block;
+}
+#dashboard .report-download,
+#dashboard-area .report-download{
+	border-top: none;
+	float: left;
+	line-height: 21px;
+	margin-left: 49px;
+	padding: 0;
+	width: 120px;
+}
+#dashboard .yearly-report,
+#dashboard-area .yearly-report {
+    border: 1px solid #dcdada;
+    float: left;
+    margin: 0 34px 0 0;
+    text-align: center;
+    -webkit-box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+       -moz-box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+            box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+    width: 150px;
+    padding:0 0 10px 0;
+}
+#dashboard .reports-date,
+#dashboard-area .reports-date {
+    padding: 4px 0 4px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #dcdada;
+}
+#dashboard .more,
+#dashboard-area .more{
+	clear: both;
+	font-size: 11px;
+	line-height: 1.4;
+	margin: 30px 0 12px 0;
+	text-align: right;
+}
+/* upcoming features */
+#dashboard #upcoming {
+	margin-top: 48px;
+	padding-right: 238px;
+}
+#dashboard #upcoming h2 {
+	margin: 0 -285px 10px -47px;
+	padding-left: 47px;
+}
+#dashboard #upcoming p {
+	margin: 24px 0;
+	line-height: 1.375;
+}
+#dashboard #upcoming div {
+	border: 1px solid #DCDADA;
+	-webkit-border-radius: 2px;
+	   -moz-border-radius: 2px;
+	        border-radius: 2px;
+	padding: 20px;
+}
+#dashboard #upcoming div h3 {
+	font-size: 13px;
+	font-weight: bold;
+	margin: 0 0 14px;
+}
+#dashboard #upcoming div ul {
+	display: inline;
+	float: left;
+	margin-right: 12px;
+	width: 280px;
+}
+/* footer */
+#dashboard #footer {
+	border-top: 1px solid #DCDADA;
+	-webkit-border-radius: 0 0 3px 3px;
+	   -moz-border-radius: 0 0 3px 3px;
+	        border-radius: 0 0 3px 3px;
+	-webkit-box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+	   -moz-box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+	        box-shadow: inset 0 1px 0 0 #FFF, inset 0 12px 12px -12px #EFEFEF;
+	color: #333;
+	padding: 20px 16px;
+}
+
+/* Feature Toggles Admin Area
+------------------------------------------------------------------------------*/
+#feature-toggles h1{
+	font: 20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+#feature-toggles ul{
+	margin: 30px 0 0 0;
+}
+#feature-toggles li{
+	border-top: 1px solid #e5e5e5;
+	display: inline-block;
+	font-size: 15px;
+	line-height: 1.9;
+	padding: 7px 0;
+	width: 438px;
+}
+#feature-toggles li:last-child{
+	border-bottom: 1px solid #e5e5e5;
+}
+#feature-toggles li a{
+	background: url(../images/toggle_switch.png) no-repeat 0 0;
+	cursor: pointer;
+	float: right;
+	height: 16px;
+	outline:none;
+	margin: 7px 0 0 0;
+	text-indent:-99999px;
+	width: 36px;
+}
+.ie6 #feature-toggles a,
+.ie7 #feature-toggles a{
+    display: block;
+}
+#feature-toggles li a.feature-off{
+	background-position: 0 bottom;
+}
+
+/* Migration toggles admin area
+------------------------------------------------------------------------------*/
+.migration-toggles th:last-child,
+.migration-toggles td:last-child {
+    text-align: center;
+}
+.migration-toggles a{
+	background: url(../images/toggle_switch.png) no-repeat 0 0;
+	cursor: pointer;
+	display: inline-block;
+	height: 16px;
+	outline:none;
+	margin: 7px 0 0 0;
+	text-indent:-99999px;
+	width: 36px;
+}
+.ie6 .migration-toggles a,
+.ie7 .migration-toggles a{
+    display: block;
+}
+.migration-toggles a.toggled-off{
+	background-position: 0 bottom;
+}
+
+/* Contact Us - Feedback page */
+#information.feedback-page h1 {
+    margin: 30px 0 14px 0;
+}
+.feedback-page .col-main {
+    margin-left: 42px;
+    width: 860px;
+}
+#information .help-section ul {
+	font-size: 16px;
+	margin-bottom: 7px;
+}
+.help-section .col {
+    float: left;
+    width: 580px;
+    margin-bottom: 20px;
+}
+#information .help-section h2 {
+    margin: 20px 0;
+}
+.help-section .box {
+    border-radius: 4px;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+	   -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+	        box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+    float: right;
+    margin: 56px 0 0 0;
+    padding: 9px 20px 10px 20px;
+    width: 198px;
+}
+#information .help-section .box h3 {
+    margin: 0 -20px 14px -20px;
+    padding: 0 20px 7px 20px;
+}
+#information .help-section .box p {
+    margin: 7px 0;
+}
+#information .help-section .col h3 {
+    margin: 27px 0 27px 0;
+}
+#information .help-section .contact {
+    margin-top: 24px;
+}
+#information .help-section .contact p {
+    margin: 9px 0;
+}
+.help-section .contact {
+    font-size: 16px;
+}
+
+
+/* Search help
+------------------------------------------------------------------------------*/
+.search-help ul a {
+    font-size: 13px;
+    font-weight: normal;
+}
+.search-help h2 {
+    position: relative;
+}
+.search-help h2 a {
+    font-family: arial, helvetica;
+    position: absolute; top: auto; right: 0; bottom: 5px;
+}
+.search-help p {
+    display: inline-block;
+    width: 578px;
+}
+.search-help img {
+    float: right;
+    margin-top: 28px;
+}
+.ie6 .search-help img,
+.ie7 .search-help img {
+    float: none;
+}
+.search-help div {
+    clear: both;
+    width: 100%;
+}
+
+} /* media type */
+

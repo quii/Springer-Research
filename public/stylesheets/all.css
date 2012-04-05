@@ -1,0 +1,38 @@
+/**
+ * Stylesheets for Springer for R&D
+ *
+ * For better maintainability and overview the CSS is split into separate files,
+ * which are all included via @import rules in this file.
+ * In the live environment all files are merged and minified into just one file
+ * to save http requests.
+ */
+
+
+/* SCREEN STYLES
+ * You must use "media screen, projection, handheld" in screen stylesheets!
+------------------------------------------------------------------------------*/
+/* Third party components (like jQuery plugins) */
+@import url("colorbox.css");
+
+/* Basic styling and persistent elements (like header and footer) */
+@import url("base.css");
+
+/* Reusable components */
+@import url("modules.css");
+
+/* CSS 3 animations, transformations, transitions */
+@import url("animations.css");
+
+/* Page specific styles */
+@import url("pages.css");
+
+/* Splash screen */
+@import url("splash.css");
+
+
+/* PRINT STYLES
+ * You must use "media print" in print stylesheets!
+ * If you use "import url print" here it will break the tests, because the
+ * minify process will merge all files and then print styles will interefere screen styles.
+------------------------------------------------------------------------------*/
+@import url("print.css");

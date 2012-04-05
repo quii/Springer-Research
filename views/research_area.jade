@@ -1,29 +1,30 @@
-section
-  h2 Research "#{area}"
-  p Conduct some research on #{area} and share useful links with other researchers. Mark results as useful by clicking on the tag button.
-  div#area-id(style="display:none;") #{area}
-
-section#search-section
-  h2 Search Springer's content database
-  form#search-form
-    label(for='search', placeholder='type search here') Search
-    input#search(type='text', name='search')
-    input#search-button(type='submit', value='Search', autocomplete='off')
+.col-main
   section
-    #results
-    script#template(style='display: none;', type="text/x-mustache")
-      ol
-        | {{#records}}
-        li
-          a(href='http://rd.springer.com/{{doi}}') {{title}}
-          | - 
-          a.tag(href="#", doi='{{doi}}', title='{{title}}') Tag
-        | {{/records}}
-    a#load-more Load more
-    p
+    h2 Research "#{area}"
+    p Conduct some research on #{area} and share useful links with other researchers. Mark results as useful by clicking on the tag button.
+    div#area-id(style="display:none;") #{area}
+
+  section#search-section
+    h2 Search Springer's content database
+    form#search-form.box
+      label(for='search', placeholder='type search here') Search
+      input#search(type='text', name='search')
+      input#search-button.btn.btn-action.btn-blue(type='submit', value='Search', autocomplete='off')
+    section
+      #results
+      script#template(style='display: none;', type="text/x-mustache")
+        ol
+          | {{#records}}
+          li
+            a(href='http://rd.springer.com/{{doi}}') {{title}}
+            | - 
+            a.tag(href="#", doi='{{doi}}', title='{{title}}') Tag
+          | {{/records}}
+      a#load-more Load more    
       a#empty-cache(href='#') Empty saved searches
 
-include chat.jade
+.col-aside
+  include chat.jade
 
-section#tagged
-  include tagged_docs.jade
+  section#tagged
+    include tagged_docs.jade

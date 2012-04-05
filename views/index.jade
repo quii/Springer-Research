@@ -1,8 +1,8 @@
-h1 What do you want to research?
 
-form(method="post", action="/")
+form.col-main.box(method="post", action="/")
+  h2 What do you want to research?
   input#research-area-input(type="text", name="research[area]")
-  input(type="submit", value="Go")
+  input.btn.btn-action.btn-blue(type="submit", value="Go")
 
 div#isHome(style="display:none;")
 
