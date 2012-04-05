@@ -35,10 +35,14 @@ class root.TagProvider
 				)
 		)
 
-	insert: (tagJson) ->
-		@getTags( (error, tagCollection) ->
+	insert: (tagJson, callback) =>
+		@getTags( (error, tagCollection) =>
 			if(error?) 
-				console.log("error")
+				callback(false)
 			else
-				tagCollection.insert(tagJson)
+				tagCollection.find({area: tagJson.area, doi: tagJson.doi}).toArray( (error, articles) =>
+					console.log "records found: #{articles.length}"
+					if articles.length==0 then tagCollection.insert(tagJson)
+					callback(true)
+				)
 		)

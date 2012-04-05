@@ -13,8 +13,9 @@ exports.research = (req, res) ->
 	res.render('research_area', { area: req.params.area })
 
 exports.postTag = (req, res) ->
-	tagProvider.insert(req.body)
-	"done"
+	tagProvider.insert(req.body, (success) =>
+		res.json(success: success)
+	)
 
 exports.researchGetTags = (req, res) ->
 	tagProvider.getByTag(req.params.area, (doc) ->
