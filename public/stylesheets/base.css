@@ -732,11 +732,10 @@ header ol li {
 		margin-bottom: 7px;
 }
 #chat input[type="text"] {
-		margin-right: 16px;
-		width: 140px;
+		margin-right: 8px;
+		width: 242px;
 }
 #chat input[type="submit"] {
-		padding: 2px 7px 3px 7px;
 }
 .chat-form label {
 		display: block;
@@ -1585,6 +1584,10 @@ ol.home li{
 
 .col-main p{
 	margin:10px 0;
+}
+
+.longer{
+	width:294px !important;
 }
 
 /*
