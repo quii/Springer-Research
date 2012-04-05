@@ -15,15 +15,16 @@ class Tagger
 				doi: $(event.currentTarget).attr 'doi'
 				title: $(event.currentTarget).attr 'title'
 				area: @areaName
-
-			console.log("tag data = ", tagData)
-
-			@socketSupport.sendSocketData('addTaggedDocument', tagData)
 			
 			$.ajax
 				type: 'POST'
 				data: tagData
 				url: '/tag'
+				success: (json) =>
+					if json.success
+						@socketSupport.sendSocketData('addTaggedDocument', tagData)
+					else 
+						alert("Didn't add tag, soz pal. It's probably already tagged.")
 			
 			return false
 		)

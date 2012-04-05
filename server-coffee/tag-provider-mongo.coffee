@@ -42,7 +42,10 @@ class root.TagProvider
 			else
 				tagCollection.find({area: tagJson.area, doi: tagJson.doi}).toArray( (error, articles) =>
 					console.log "records found: #{articles.length}"
-					if articles.length==0 then tagCollection.insert(tagJson)
-					callback(true)
+					if articles.length==0 
+						tagCollection.insert(tagJson)
+						callback(true)
+					else
+						callback(false)
 				)
 		)
