@@ -683,6 +683,11 @@ header ol li {
 		padding: 0 14px;
 		width:100px;
 }
+
+form.home input[type="submit"]{
+	width:auto !important;
+}
+
 #current-research-container {
 
 }
