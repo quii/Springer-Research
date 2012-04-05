@@ -52,7 +52,8 @@ class Chat
 		)
 
 	addChatLine: (name, message) ->
-		$("#chat ul").append("<li><strong>#{name}</strong>: #{message}</li>")
+		chatBox.append("<li><strong>#{name}</strong>: #{message}</li>")
+		chatBox[0].scrollTop = chatBox[0].scrollHeight
 
 	showHideChat: -> if @numberOfUsers > 1 then @displayChat() else @hideChat()
 	
@@ -70,6 +71,7 @@ class Chat
 	aliasInput = do -> $("#chat .alias")
 	numberOfUsersSpan = do -> $("#chat .number-of-users")
 	areaSpan = do -> $("#chat .chat-area")
+	chatBox = do -> $("#chat ul")
 
 $ ->
 	chat = new Chat()
