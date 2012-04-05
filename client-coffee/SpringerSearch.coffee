@@ -6,6 +6,7 @@ class SpringerLite
 		@handleLoadMore()
 		@handleEmpty()
 		loadMoreButton.hide()
+		removeSavedSearchesButton.hide()
 
 	doSearch: (page) ->
 		searchButtonElement.attr("value", "Searching")
@@ -42,6 +43,7 @@ class SpringerLite
 		searchButtonElement.attr("value", "Search")
 		loadMoreButton.text("Load more")
 		loadMoreButton.show()
+		removeSavedSearchesButton.show()
 
 	handleSubmit: ->
 		$("#search-form").submit (e) =>
@@ -70,6 +72,7 @@ class SpringerLite
 
 
 	loadMoreButton = do -> $("#load-more")
+	removeSavedSearchesButton = do -> $("#empty-cache")
 	searchButtonElement = do -> $("#search-button")
 	resultsContainer = do -> $("#results")
 	searchBox = do -> $("#search")

@@ -1,7 +1,5 @@
 # Features to do (prioritized)
 
-- Chat needs to scroll to the bottom all the time!
-
 - Dont hide previous chat transcript when a user leaves
 
 - Stop duplicate tags
