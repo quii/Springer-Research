@@ -683,9 +683,7 @@ header ol li {
 		padding: 0 14px;
 }
 #current-research-container {
-		position: absolute;
-		top: 18px;
-		right: 15px;
+
 }
 #current-research-container h2 {
 		font-size: 15px;
@@ -919,7 +917,7 @@ body {
 #header {
 	border-bottom: 1px solid #DBDADA;
 	min-height: 36px;
-	padding-top: 90px;
+	padding-top: 48px;
 	position: relative;
 }
 .ie6 #header {
@@ -1531,3 +1529,65 @@ img.loading{
 
 
 } /* media type */
+
+#tagged-container{
+	margin:20px 0;
+}
+
+ol.home{
+	margin:0 0 2em 0;
+	padding:0em 2em 0 2em;
+}
+
+form.home{
+	margin: 1em 2em 0 2em;
+	width: 860px !important;
+}
+
+.home label{
+	font-weight:bold;
+	width:300px;
+	font-size:1.3em;
+	padding-right:15px;
+}
+
+#research-area-input{
+	width:500px;
+}
+
+#current-research-container h2{
+	font-size:2em;
+	margin:0em 1em 1em 1em;
+}
+
+#current-research-container ol{
+	float:left;
+	margin:0 2em 0 2em;
+}
+
+#current-research-container li{
+	float:left;
+	font-size:1.2em;
+	margin-right:10px;
+}
+
+
+ol.home li{
+	font-size:1.4em;
+	padding:0.5em;
+/*	text-indent:27px;
+	background-position:0px 5px;*/
+}
+
+/*
+.find{
+	background:url('/images/Search.png') no-repeat;
+}
+
+.contribute{
+	background:url('/images/Add.png') no-repeat;
+}
+
+.connect{
+	background:url('/images/Comment.png') no-repeat;
+}*/
