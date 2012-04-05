@@ -45,7 +45,7 @@ class Tagger
 	listenForTagAdded: ->
 		@socketSupport.listen('taggedDocumentAdded', (data) ->
 			$('#tagged-container').show()
-			$("#tagged-container ol").append("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
+			$("#tagged-container ol").prepend("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
 		)
 
 $ ->

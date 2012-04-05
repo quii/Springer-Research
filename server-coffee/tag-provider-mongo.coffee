@@ -25,7 +25,7 @@ class root.TagProvider
 			if(error?)
 				console.log("failed to get by tag")
 			else
-				tagCollection.find({area: name}).toArray((error, articles) ->
+				tagCollection.find({area: name}).sort("createdAt", -1).toArray((error, articles) ->
 					if(error? || !articles?)
 						console.log("error finding documents matching #{name}")
 					else
@@ -43,6 +43,7 @@ class root.TagProvider
 				tagCollection.find({area: tagJson.area, doi: tagJson.doi}).toArray( (error, articles) =>
 					console.log "records found: #{articles.length}"
 					if articles.length==0 
+						tagJson["createdAt"] = new Date();
 						tagCollection.insert(tagJson)
 						callback(true)
 					else

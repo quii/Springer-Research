@@ -1,7 +1,5 @@
 # Features to do (prioritized)
 
-- Stop duplicate tags
-
 - Dont hide previous chat transcript when a user leaves
 
 - Order by most recently added
