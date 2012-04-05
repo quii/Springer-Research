@@ -17,7 +17,7 @@ class root.TagProvider
 		)
 
 	constructor: (host, port) ->
-		@db = new Db('node-mongo-blog', new Server(host, port, {auto_reconnect: true}, {}))
+		@db = new Db('springer-research', new Server(host, port, {auto_reconnect: true}, {}))
 		@db.open(->);
 
 	getByTag: (name, callback) ->

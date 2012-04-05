@@ -2,8 +2,6 @@
 
 - Dont hide previous chat transcript when a user leaves
 
-- Order by most recently added
-
 - Validation on the inputs
 
 - Add a "foo has left"
