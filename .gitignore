@@ -2,3 +2,4 @@
 /bin
 .DS_Store
 /public/javascripts/
+/public/stylesheets/all.min.css

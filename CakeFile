@@ -45,3 +45,4 @@ task 'build', 'Build single application file from source files', ->
 
 task 'min', 'minify compiled *.js file', ->
   exec "java -jar bin/yuicompressor-2.4.7.jar public/javascripts/app.js -o public/javascripts/app.min.js"
+  exec "java -jar bin/yuicompressor-2.4.7.jar public/stylesheets/all.css -o public/stylesheets/all.min.css"
