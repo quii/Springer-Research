@@ -51,19 +51,6 @@ html {
 
 
 
-/* Superscripts and subscripts
-------------------------------------------------------------------------------*/
-sub, sup {
-	font-size: .7em;
-	line-height: 1;
-}
-sub {
-	vertical-align: text-bottom;
-}
-sup {
-	vertical-align: text-top;
-}
-
 /* Links
 ------------------------------------------------------------------------------*/
 a {
