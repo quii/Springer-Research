@@ -1,5 +1,7 @@
 # Features to do (prioritized)
 
+- Display total number of results
+
 - Dont hide previous chat transcript when a user leaves
 
 - Validation on the inputs
