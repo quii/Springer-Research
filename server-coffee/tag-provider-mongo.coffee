@@ -25,7 +25,8 @@ class root.TagProvider
 			if(error?)
 				console.log("failed to get by tag")
 			else
-				tagCollection.find({area: name}).sort("createdAt", -1).toArray((error, articles) ->
+				console.log("trying to find tags with area of #{name}")
+				tagCollection.find({areas: name}).sort("createdAt", -1).toArray((error, articles) ->
 					if(error? || !articles?)
 						console.log("error finding documents matching #{name}")
 					else
@@ -40,13 +41,17 @@ class root.TagProvider
 			if(error?) 
 				callback(false)
 			else
-				tagCollection.find({area: tagJson.area, doi: tagJson.doi}).toArray( (error, articles) =>
-					console.log "records found: #{articles.length}"
+				tagCollection.find({doi: tagJson.doi}).toArray( (error, articles) =>
 					if articles.length==0 
 						tagJson["createdAt"] = new Date();
 						tagCollection.insert(tagJson)
 						callback(true)
 					else
-						callback(false)
+						if tagJson.areas[0] in articles[0].areas
+							callback(false)
+						else
+							articles[0].areas.push tagJson.areas[0]
+							tagCollection.update({_id: articles[0]._id}, articles[0])
+							callback(true)
 				)
 		)

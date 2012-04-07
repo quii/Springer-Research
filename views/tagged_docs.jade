@@ -5,4 +5,8 @@ script#tagged-template(style='display: none;', type="text/x-mustache")
     | {{#results}}
     li
       a(href='http://rd.springer.com/{{doi}}') {{title}}
+      ul.also-tagged
+        | {{#areas}}
+        li {{.}}
+        | {{/areas}}
     | {{/results}}

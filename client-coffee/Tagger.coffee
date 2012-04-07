@@ -16,7 +16,7 @@ class Tagger
 			tagData = 
 				doi: $(event.currentTarget).attr 'doi'
 				title: $(event.currentTarget).attr 'title'
-				area: @areaName
+				areas:[@areaName]
 			
 			$.ajax
 				type: 'POST'
@@ -40,14 +40,16 @@ class Tagger
 			success: (json) -> renderTaggedDocuments(json)
 
 	renderTaggedDocuments = (json) ->
+			console.log(json)
 			renderedHTML = Mustache.to_html($('#tagged-template').html(), json)
 			$('#tagged-container').html(renderedHTML)
 			if json.results.length is 0 then $('#tagged-container').hide()
 
 	listenForTagAdded: ->
-		@socketSupport.listen('taggedDocumentAdded', (data) ->
-			$('#tagged-container').show()
-			$("#tagged-container ol").prepend("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
+		@socketSupport.listen('taggedDocumentAdded', (data) =>
+			if @areaName in data.areas
+				$('#tagged-container').show()
+				$("#tagged-container ol").prepend("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
 		)
 
 $ ->
