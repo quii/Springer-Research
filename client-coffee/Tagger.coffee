@@ -49,22 +49,35 @@ class Tagger
 
 			if json.results.length is 0 then $('#tagged-container').hide()
 
-	listenForTagAdded: ->
+	listenForTagAdded: =>
 		@socketSupport.listen('taggedDocumentAdded', (data) =>
-			console.log("data = ", data)
 			if @areaName in data.areas
 				$('#tagged-container').show()
-				$("#tagged-container ol").prepend @makeTagMarkup(data)
+				if @findTaggedByName(data.title).length>0
+					@updateDocumentTags(data)
+				else
+					$("#tagged-container ol").prepend @makeTagMarkup(data)
 		)
+
+	findTaggedByName: (name) -> $("#tagged-container").find("li a:contains('#{name}')")
+
+	updateDocumentTags: (json) =>
+		documentToUpdate = @findTaggedByName(json.title).parent()
+		documentToUpdate.find("ul").remove()
+		console.log("going to remove the ul from ", documentToUpdate)
+		documentToUpdate.append(@makeTagList(json.areas))
+
+	makeTagList: (areas) =>
+			areaList = "<ul class='also-tagged'>"
+			for area in areas
+				unless area==@areaName then areaList+="<li><a href='/research/#{area}'>#{area}</a></li>"
+			areaList+="</ul>"
+			return areaList
 
 	makeTagMarkup: (json) =>
 		areaList = ""
 		unless json.areas.length==1
-			areaList = "<ul class='also-tagged'>"
-			for area in json.areas
-				unless area==@areaName then areaList+="<li><a href='/research/#{area}'>#{area}</a></li>"
-			areaList+="</ul>"
-
+			areaList = @makeTagList(json.areas)
 		"<li><a href='http://rd.springer.com/#{json.doi}'>#{json.title}</a>#{areaList}</li>"
 
 $ ->
