@@ -68,7 +68,6 @@ class Chat
 	hideAliasForm: -> $("#chat .alias-form").hide()
 	hasBeenChat: -> chatBox.find("li").length>0
 
-
 	chatWrapper = do -> $("section#chat")
 	onChatPage = do -> chatWrapper.length>0
 	chatInput = do -> $("#chat .text-input")

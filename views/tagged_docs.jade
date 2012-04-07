@@ -7,6 +7,7 @@ script#tagged-template(style='display: none;', type="text/x-mustache")
       a(href='http://rd.springer.com/{{doi}}') {{title}}
       ul.also-tagged
         | {{#areas}}
-        li {{.}}
+        li 
+          a(href='/research/{{.}}') {{.}}
         | {{/areas}}
     | {{/results}}

@@ -1,3 +1,5 @@
+Array::remove = (e) -> @[t..t] = [] if (t = @indexOf(e)) > -1
+
 class Tagger
 	constructor: ->
 		@areaName = $("#area-id").text()
@@ -30,19 +32,22 @@ class Tagger
 			
 			return false
 		)
-		
+		 
 	getTaggedDocuments: ->
 		url = "/tag/#{@areaName}"
 		$.ajax
 			url: url
 			dataType: 'json'
 			type: 'GET'
-			success: (json) -> renderTaggedDocuments(json)
+			success: (json) => renderTaggedDocuments(json)
 
-	renderTaggedDocuments = (json) ->
-			console.log(json)
+	renderTaggedDocuments = (json) =>
 			renderedHTML = Mustache.to_html($('#tagged-template').html(), json)
 			$('#tagged-container').html(renderedHTML)
+			derp = $("#area-id").text()
+			$('#tagged-container').find(".also-tagged li").remove(":contains('#{derp}')");
+
+   
 			if json.results.length is 0 then $('#tagged-container').hide()
 
 	listenForTagAdded: ->
