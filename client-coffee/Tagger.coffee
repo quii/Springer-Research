@@ -57,8 +57,15 @@ class Tagger
 				$("#tagged-container ol").prepend @makeTagMarkup(data)
 		)
 
-	makeTagMarkup: (json) ->
-		"<li><a href='http://rd.springer.com/#{json.doi}'>#{json.title}</a></li>"
+	makeTagMarkup: (json) =>
+		areaList = ""
+		unless json.areas.length==1
+			areaList = "<ul class='also-tagged'>"
+			for area in json.areas
+				unless area==@areaName then areaList+="<li><a href='/research/#{area}'>#{area}</a></li>"
+			areaList+="</ul>"
+
+		"<li><a href='http://rd.springer.com/#{json.doi}'>#{json.title}</a>#{areaList}</li>"
 
 $ ->
 	if($("#tagged-container").length>0)
