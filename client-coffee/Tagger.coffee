@@ -11,6 +11,8 @@ class Tagger
 	registerTagButtons: ->
 		$(".tag").live("click", (event) =>
 
+			$(event.currentTarget).hide()
+
 			tagData = 
 				doi: $(event.currentTarget).attr 'doi'
 				title: $(event.currentTarget).attr 'title'
