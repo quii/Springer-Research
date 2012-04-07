@@ -1,16 +1,12 @@
 # Features to do (prioritized)
 
-- Display total number of results
-
-- Dont hide previous chat transcript when a user leaves
+- Show other tags for a given document
 
 - Validation on the inputs
 
 - Add a "foo has left"
 
 - Add tag count
-
-- Show other tags for a given document
 
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).
