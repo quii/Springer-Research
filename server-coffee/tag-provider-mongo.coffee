@@ -45,13 +45,13 @@ class root.TagProvider
 					if articles.length==0 
 						tagJson["createdAt"] = new Date();
 						tagCollection.insert(tagJson)
-						callback(true)
+						callback(true, tagJson)
 					else
 						if tagJson.areas[0] in articles[0].areas
 							callback(false)
 						else
 							articles[0].areas.push tagJson.areas[0]
 							tagCollection.update({_id: articles[0]._id}, articles[0])
-							callback(true)
+							callback(true, articles[0])
 				)
 		)

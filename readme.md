@@ -2,6 +2,8 @@
 
 - Validation on the inputs
 
+- Would be nice to see other tags associated with doc when the socket emits the info to everyone
+
 - Add a "foo has left"
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).

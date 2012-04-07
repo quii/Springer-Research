@@ -13,8 +13,8 @@ exports.research = (req, res) ->
 	res.render('research_area', { area: req.params.area })
 
 exports.postTag = (req, res) ->
-	tagProvider.insert(req.body, (success) =>
-		res.json(success: success)
+	tagProvider.insert(req.body, (success, json) =>
+		res.json(success: success, json: json)
 	)
 
 exports.researchGetTags = (req, res) ->

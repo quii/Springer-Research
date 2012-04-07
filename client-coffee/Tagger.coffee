@@ -26,13 +26,13 @@ class Tagger
 				url: '/tag'
 				success: (json) =>
 					if json.success
-						@socketSupport.sendSocketData('addTaggedDocument', tagData)
+						@socketSupport.sendSocketData('addTaggedDocument', json.json)
 					else 
 						alert("Didn't add tag, soz pal. It's probably already tagged.")
 			
 			return false
 		)
-		 
+
 	getTaggedDocuments: ->
 		url = "/tag/#{@areaName}"
 		$.ajax
@@ -47,15 +47,18 @@ class Tagger
 			derp = $("#area-id").text()
 			$('#tagged-container').find(".also-tagged li").remove(":contains('#{derp}')");
 
-   
 			if json.results.length is 0 then $('#tagged-container').hide()
 
 	listenForTagAdded: ->
 		@socketSupport.listen('taggedDocumentAdded', (data) =>
+			console.log("data = ", data)
 			if @areaName in data.areas
 				$('#tagged-container').show()
-				$("#tagged-container ol").prepend("<li><a href='http://rd.springer.com/#{data.doi}'>#{data.title}</a></li>")
+				$("#tagged-container ol").prepend @makeTagMarkup(data)
 		)
+
+	makeTagMarkup: (json) ->
+		"<li><a href='http://rd.springer.com/#{json.doi}'>#{json.title}</a></li>"
 
 $ ->
 	if($("#tagged-container").length>0)
