@@ -55,13 +55,18 @@ class Chat
 		chatBox.append("<li><strong>#{name}</strong>: #{message}</li>")
 		chatBox[0].scrollTop = chatBox[0].scrollHeight
 
-	showHideChat: -> if @numberOfUsers > 1 then @displayChat() else @hideChat()
+	showHideChat: -> 
+		if @numberOfUsers > 1
+			@displayChat() 
+		else unless @hasBeenChat
+			@hideChat()
 	
 	displayChat: -> chatWrapper.show()
 	hideChat: -> chatWrapper.hide()
 	hideChatForm: -> chatForm.hide()
 	showChatForm: -> chatForm.show()
 	hideAliasForm: -> $("#chat .alias-form").hide()
+	hasBeenChat: -> chatBox.find("li").length>0
 
 
 	chatWrapper = do -> $("section#chat")
