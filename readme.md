@@ -2,8 +2,6 @@
 
 - Validation on the inputs
 
-- Would be nice to see other tags associated with doc when the socket emits the info to everyone
-
 - Add a "foo has left"
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).
@@ -14,7 +12,8 @@
 	- Show content type, authors, etc
 
 # Refactoring required
-- DRY the server's socket handler
+- Too much markup being made in tagger.coffee. Need to 'tache it up instead
+- DRY the server's socket handler, move some of it into user?
 - All the routes are in one file called index.coffee, which is stupid and misleading
 - Make the cake file a little more configurable
 
