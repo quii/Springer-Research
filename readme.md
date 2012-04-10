@@ -1,4 +1,4 @@
-# Features to do (prioritized)
+# Features to do (prioritized
 
 - Add a "foo has left"
 

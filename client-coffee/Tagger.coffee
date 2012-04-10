@@ -54,20 +54,25 @@ class Tagger
 
 	listenForTagAdded: =>
 		@socketSupport.listen('taggedDocumentAdded', (data) =>
+			console.log("tag added: ", data)
 			if @areaName in data.areas
 				$('#tagged-container').show()
-				if @findTaggedByName(data.title).length>0
+				if @findTaggedByName(data.doi).length>0
 					@updateDocumentTags(data)
 				else
 					$("#tagged-container ol").prepend @makeTagMarkup(data)
 		)
 
-	findTaggedByName: (name) -> $("#tagged-container").find("li a:contains('#{name}')")
+	findTaggedByName: (doi) -> 
+		found = []
+		$("#tagged-container").find("li a").each( (index, element) =>
+			unless $(element).attr('href').indexOf(doi) == -1 then found.push $(element)
+		)
+		return found
 
 	updateDocumentTags: (json) =>
-		documentToUpdate = @findTaggedByName(json.title).parent()
+		documentToUpdate = @findTaggedByName(json.doi)[0].parent()
 		documentToUpdate.find("ul").remove()
-		console.log("going to remove the ul from ", documentToUpdate)
 		documentToUpdate.append(@makeTagList(json.areas))
 
 	makeTagList: (areas) =>
