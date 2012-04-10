@@ -1,5 +1,3 @@
-alphanumericRegex = "/[^a-zA-Z\d ]/g"
-
 isFieldEmpty = (element) ->
 	element.val().length==0
 
@@ -8,7 +6,8 @@ $.validator.addMethod(
 	(value, element, regexp) ->
 		re = new RegExp(regexp)
 		return this.optional(element) || re.test(value)
-	"Please check your input"
+	"No shenanigans please (A-Z 0-9 with spaces only)"
 )
 
-console.log("added validator method")
+addAlphaNumericValidation = (element) ->
+	element.rules("add", { regex: "^[a-zA-Z0-9\\s]{1,40}$" })

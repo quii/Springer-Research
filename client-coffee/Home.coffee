@@ -35,4 +35,4 @@ $ ->
 	if($("#isHome").length>0)
 		home = new Home()
 		$("form.home").validate()
-		$("#research-area-input").rules("add", { regex: "^[a-zA-Z0-9\\s]{1,40}$" })
+		addAlphaNumericValidation $("#research-area-input")

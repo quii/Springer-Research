@@ -961,6 +961,7 @@ label.error{
 	background:white;
 	font-weight:bold;
 	font-size:1em;
+	text-align:center;
 }
 
 } /* media type */

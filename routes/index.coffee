@@ -6,7 +6,7 @@ exports.index = (req, res) ->
 
 exports.indexPost = (req, res) ->
 	console.log("researching #{req.body.research.area}")
-	res.redirect("/research/#{req.body.research.area}")
+	res.redirect("/research/#{req.body.research.area.trim()}")
 
 exports.research = (req, res) ->
 	console.log("get to research #{req.params.area}")
