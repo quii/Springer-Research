@@ -48,7 +48,7 @@ class SpringerLite
 	handleSubmit: ->
 		$("#search-form").submit (e) =>
 			e.preventDefault() 
-			this.doSearch()
+			if searchBox.val().length >0 then this.doSearch()
 
 	handleLoadMore: ->
 		loadMoreButton.click =>
@@ -80,3 +80,4 @@ class SpringerLite
 $ ->
 	if($("#search").length>0)
 		site = new SpringerLite()
+		$("#search-form").validate()

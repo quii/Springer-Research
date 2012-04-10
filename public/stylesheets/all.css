@@ -945,5 +945,22 @@ input.error-message {
 	float:left;
 }
 
+form{
+	position:relative;
+}
+
+label.error{
+	position:absolute;
+	top: 50px;
+	border: 1px solid #DBDADA;
+	-webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	   -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	        box-shadow: 3px 3px 5px rgba(0, 0, 0, .08);
+	padding: 10px;
+	width:135px;
+	background:white;
+	font-weight:bold;
+	font-size:1em;
+}
 
 } /* media type */

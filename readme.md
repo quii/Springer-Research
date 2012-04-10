@@ -1,7 +1,5 @@
 # Features to do (prioritized)
 
-- Validation on the inputs
-
 - Add a "foo has left"
 
 - Be able to export the list of tagged documents for an area to Instapaper (http://www.instapaper.com/api/simple).

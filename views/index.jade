@@ -13,7 +13,7 @@ ol.home
 
 form.box.home(method="post", action="/")
   label What do you want to research?
-  input#research-area-input(type="text", name="research[area]")
+  input#research-area-input.required(type="text", name="research[area]")
   input.btn.btn-action.btn-blue(type="submit", value="Go")
 
 div#isHome(style="display:none;")

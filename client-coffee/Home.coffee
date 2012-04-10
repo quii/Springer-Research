@@ -6,8 +6,6 @@ class Home
 		@listenForNewAreasBeingResearched()
 		@tellServerImHome()
 
-		# validateAlphanumeric("#research-area-input")
-
 	askForRealtimeInfo: ->
 		@socketSupport.sendRecieveData("whatsBeingResearched", {}, @displayCurrentResearch)
 
@@ -26,10 +24,16 @@ class Home
 				results: areas
 
 			renderedHTML = Mustache.to_html($('#current-research-template').html(), @currentResearch)
-			$('#current-research-container').html(renderedHTML)
+			currentResearchContainer.html(renderedHTML)
 		else
-			$('#current-research-container').html('') 
+			currentResearchContainer.html('') 
+
+	researchAreaInput = do -> $("#research-area-input")
+	currentResearchContainer = do -> $("#current-research-container")
 
 $ ->
 	if($("#isHome").length>0)
 		home = new Home()
+		$("form.home").validate()
+
+		
