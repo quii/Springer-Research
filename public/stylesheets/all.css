@@ -503,7 +503,7 @@ form.home input[type="submit"]{
 /* Body
 ------------------------------------------------------------------------------*/
 body {
-	background: #F1F1F1 url(../images/bg.png);
+	background: #F1F1F1;
 	color: #333;
 	font: 13px Arial, Helvetica, sans-serif;
 }

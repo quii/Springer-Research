@@ -26,7 +26,6 @@ class SpringerLite
 			startIndex = page*10
 
 		url = "http://api.springer.com/metadata/jsonp?q=#{term}&api_key=ueukuwx5guegu4ahjc6ajq8w&s=#{startIndex}&callback=?"
-		console.log url
 		$.ajax 
 			url: url
 			dataType: 'jsonp'
