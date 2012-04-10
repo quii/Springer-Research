@@ -44,8 +44,11 @@ class Tagger
 	renderTaggedDocuments = (json) =>
 			renderedHTML = Mustache.to_html($('#tagged-template').html(), json)
 			$('#tagged-container').html(renderedHTML)
+			
 			derp = $("#area-id").text()
-			$('#tagged-container').find(".also-tagged li").remove(":contains('#{derp}')");
+			$('#tagged-container').find(".also-tagged li").each( (index, element) =>
+				if $(element).find('a').text()==derp then $(element).remove()
+			)
 
 			if json.results.length is 0 then $('#tagged-container').hide()
 
